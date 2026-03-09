@@ -9,12 +9,17 @@ $(document).ready(function() {
 
     // Initialize DataTables
     if ($.fn.DataTable) {
-        $('.datatable').DataTable({
-            language: {
-                url: '//cdn.datatables.net/plug-ins/1.13.8/i18n/id.json'
-            },
-            responsive: true,
-            order: [[0, 'desc']]
+        $('.datatable').each(function() {
+            var $table = $(this);
+            if ($table.find('thead').length && $table.find('tbody tr').length) {
+                $table.DataTable({
+                    language: {
+                        url: '//cdn.datatables.net/plug-ins/1.13.8/i18n/id.json'
+                    },
+                    responsive: true,
+                    order: [[0, 'desc']]
+                });
+            }
         });
     }
 
