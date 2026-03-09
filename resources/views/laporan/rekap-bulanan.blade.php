@@ -13,9 +13,6 @@
         <h1 class="page-title">Rekap Bulanan</h1>
         <p class="page-subtitle">Data peminjaman per bulan</p>
     </div>
-    <a href="{{ route('laporan.cetak-rekap-bulanan', ['bulan' => $bulan, 'tahun' => $tahun]) }}" class="btn-primary-custom" target="_blank">
-        <i class="fas fa-print"></i> Cetak
-    </a>
 </div>
 
 <div class="card mb-4">

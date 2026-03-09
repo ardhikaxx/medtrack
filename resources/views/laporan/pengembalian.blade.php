@@ -13,9 +13,6 @@
         <h1 class="page-title">Laporan Pengembalian</h1>
         <p class="page-subtitle">Data pengembalian dokumen rekam medis</p>
     </div>
-    <a href="{{ route('laporan.cetak-pengembalian') }}" class="btn-primary-custom" target="_blank">
-        <i class="fas fa-print"></i> Cetak
-    </a>
 </div>
 
 <div class="card">

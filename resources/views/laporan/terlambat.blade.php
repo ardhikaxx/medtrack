@@ -13,9 +13,6 @@
         <h1 class="page-title">Dokumen Terlambat</h1>
         <p class="page-subtitle">Daftar peminjaman yang melampaui tanggal rencana kembali</p>
     </div>
-    <a href="{{ route('laporan.cetak-terlambat') }}" class="btn-primary-custom" target="_blank">
-        <i class="fas fa-print"></i> Cetak
-    </a>
 </div>
 
 <div class="card">

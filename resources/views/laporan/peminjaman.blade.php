@@ -13,9 +13,6 @@
         <h1 class="page-title">Laporan Peminjaman</h1>
         <p class="page-subtitle">Data peminjaman dokumen rekam medis</p>
     </div>
-    <a href="{{ route('laporan.cetak-peminjaman') }}" class="btn-primary-custom" target="_blank">
-        <i class="fas fa-print"></i> Cetak
-    </a>
 </div>
 
 <div class="row g-3 mb-4">
