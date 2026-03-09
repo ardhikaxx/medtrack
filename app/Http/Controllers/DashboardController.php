@@ -39,7 +39,7 @@ class DashboardController extends Controller
             ->take(10)
             ->get();
 
-        return view('dashboard.index', compact('stats', 'menungguPersetujuan', 'terlambat', 'aktivitas Terkini'));
+        return view('dashboard.index', compact('stats', 'menungguPersetujuan', 'terlambat', 'aktivitasTerkini'));
     }
 
     public function statistik(Request $request)
