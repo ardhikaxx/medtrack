@@ -16,7 +16,7 @@ return new class extends Migration
             $table->string('lantai', 10)->nullable();
             $table->string('gedung', 50)->nullable();
             $table->string('no_telp_unit', 15)->nullable();
-            $table->foreignId('kepala_unit_id')->nullable()->constrained('users')->nullOnDelete();
+            $table->unsignedBigInteger('kepala_unit_id')->nullable();
             $table->boolean('is_active')->default(true);
             $table->text('keterangan')->nullable();
             $table->timestamps();

@@ -14,8 +14,8 @@ return new class extends Migration
             $table->string('kode_dokumen', 30)->unique();
             $table->string('no_rekam_medis', 20);
             $table->date('tanggal_kunjungan');
-            $table->foreignId('poli_id')->nullable()->constrained('units')->nullOnDelete();
-            $table->foreignId('dokter_id')->nullable()->constrained('users')->nullOnDelete();
+            $table->unsignedBigInteger('poli_id')->nullable();
+            $table->unsignedBigInteger('dokter_id')->nullable();
             $table->enum('jenis_kunjungan', ['rawat_jalan', 'rawat_inap', 'ugd', 'konsultasi']);
             $table->enum('status_dokumen', ['tersedia', 'dipinjam', 'dalam_proses', 'hilang', 'rusak', 'dimusnahkan'])->default('tersedia');
             $table->foreignId('ruang_penyimpanan_id')->nullable()->constrained('ruang_penyimpanans')->nullOnDelete();
@@ -29,7 +29,7 @@ return new class extends Migration
             $table->text('diagnosa_utama')->nullable();
             $table->string('kode_icd10', 20)->nullable();
             $table->text('catatan_dokumen')->nullable();
-            $table->foreignId('dibuat_oleh')->constrained('users');
+            $table->unsignedBigInteger('dibuat_oleh');
             $table->timestamps();
             $table->softDeletes();
 
