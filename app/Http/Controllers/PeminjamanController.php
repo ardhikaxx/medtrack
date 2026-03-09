@@ -85,7 +85,7 @@ class PeminjamanController extends Controller
     public function setujui(Request $request, Peminjaman $peminjaman)
     {
         try {
-            $this->peminjamanService->setetujuiPeminjaman($peminjaman, Auth::user(), $request->catatan);
+            $this->peminjamanService->setujuiPeminjaman($peminjaman, Auth::user(), $request->catatan);
             return back()->with('success', 'Permohonan peminjaman disetujui.');
         } catch (\Exception $e) {
             return back()->with('error', $e->getMessage());
