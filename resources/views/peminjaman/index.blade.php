@@ -20,7 +20,7 @@
 <div class="card">
     <div class="card-body">
         <div class="table-responsive">
-            <table class="table table-custom datatable">
+            <table class="table table-custom">
                 <thead>
                     <tr>
                         <th>No. Peminjaman</th>

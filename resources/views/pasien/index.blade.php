@@ -38,7 +38,7 @@
         </form>
 
         <div class="table-responsive">
-            <table class="table table-custom datatable">
+            <table class="table table-custom">
                 <thead>
                     <tr>
                         <th>No. RM</th>

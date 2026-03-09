@@ -19,7 +19,7 @@
 
 <div class="card">
     <div class="card-body">
-        <table class="table table-custom datatable">
+            <table class="table table-custom">
             <thead>
                 <tr>
                     <th>Kode Dokumen</th>
