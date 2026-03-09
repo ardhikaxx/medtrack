@@ -49,11 +49,20 @@ document.addEventListener('DOMContentLoaded', function() {
                 console.warn('No provinces data received');
                 return;
             }
+            
+            // Clear existing options and add new ones
+            provinceSelect.empty();
+            provinceSelect.append(new Option('Pilih Provinsi', '', false, false));
+            
             data.forEach(province => {
-                const option = new Option(province.name, province.name, false, false);
-                provinceSelect.append(option);
+                provinceSelect.append($('<option>', {
+                    value: province.name,
+                    text: province.name
+                }));
             });
-            provinceSelect.trigger('change');
+            
+            // Trigger Select2 to rebuild its data
+            provinceSelect.trigger('change.select2');
             console.log('Provinces populated');
         })
         .catch(error => {
@@ -65,11 +74,11 @@ document.addEventListener('DOMContentLoaded', function() {
     provinceSelect.on('change', function() {
         const provinceName = $(this).val();
         
-        regencySelect.empty().append(new Option('Pilih Kota/Kabupaten', '', false, false)).trigger('change');
-        districtSelect.empty().append(new Option('Pilih Kecamatan', '', false, false)).trigger('change');
-        districtSelect.prop('disabled', true).trigger('change');
-        villageSelect.empty().append(new Option('Pilih Kelurahan', '', false, false)).trigger('change');
-        villageSelect.prop('disabled', true).trigger('change');
+        regencySelect.empty().append($('<option>', { value: '', text: 'Pilih Kota/Kabupaten' }));
+        districtSelect.empty().append($('<option>', { value: '', text: 'Pilih Kecamatan' }));
+        districtSelect.prop('disabled', true).trigger('change.select2');
+        villageSelect.empty().append($('<option>', { value: '', text: 'Pilih Kelurahan' }));
+        villageSelect.prop('disabled', true).trigger('change.select2');
         
         $('#provinsi_input').val(provinceName);
         
@@ -82,11 +91,14 @@ document.addEventListener('DOMContentLoaded', function() {
                         fetch(`/api/wilayah/regencies/${province.id}`)
                             .then(res => res.json())
                             .then(data => {
+                                regencySelect.empty().append($('<option>', { value: '', text: 'Pilih Kota/Kabupaten' }));
                                 data.forEach(regency => {
-                                    const option = new Option(regency.name, regency.name, false, false);
-                                    regencySelect.append(option);
+                                    regencySelect.append($('<option>', {
+                                        value: regency.name,
+                                        text: regency.name
+                                    }));
                                 });
-                                regencySelect.prop('disabled', false).trigger('change');
+                                regencySelect.prop('disabled', false).trigger('change.select2');
                             })
                             .catch(err => console.error('Error loading regencies:', err));
                     }
@@ -99,9 +111,9 @@ document.addEventListener('DOMContentLoaded', function() {
     regencySelect.on('change', function() {
         const regencyName = $(this).val();
         
-        districtSelect.empty().append(new Option('Pilih Kecamatan', '', false, false)).trigger('change');
-        villageSelect.empty().append(new Option('Pilih Kelurahan', '', false, false)).trigger('change');
-        villageSelect.prop('disabled', true).trigger('change');
+        districtSelect.empty().append($('<option>', { value: '', text: 'Pilih Kecamatan' }));
+        villageSelect.empty().append($('<option>', { value: '', text: 'Pilih Kelurahan' }));
+        villageSelect.prop('disabled', true).trigger('change.select2');
         
         $('#kota_kabupaten_input').val(regencyName);
         
@@ -119,11 +131,14 @@ document.addEventListener('DOMContentLoaded', function() {
                                     fetch(`/api/wilayah/districts/${regency.id}`)
                                         .then(res => res.json())
                                         .then(data => {
+                                            districtSelect.empty().append($('<option>', { value: '', text: 'Pilih Kecamatan' }));
                                             data.forEach(district => {
-                                                const option = new Option(district.name, district.name, false, false);
-                                                districtSelect.append(option);
+                                                districtSelect.append($('<option>', {
+                                                    value: district.name,
+                                                    text: district.name
+                                                }));
                                             });
-                                            districtSelect.prop('disabled', false).trigger('change');
+                                            districtSelect.prop('disabled', false).trigger('change.select2');
                                         })
                                         .catch(err => console.error('Error loading districts:', err));
                                 }
@@ -139,7 +154,7 @@ document.addEventListener('DOMContentLoaded', function() {
     districtSelect.on('change', function() {
         const districtName = $(this).val();
         
-        villageSelect.empty().append(new Option('Pilih Kelurahan', '', false, false)).trigger('change');
+        villageSelect.empty().append($('<option>', { value: '', text: 'Pilih Kelurahan' }));
         
         $('#kecamatan_input').val(districtName);
         
@@ -162,11 +177,14 @@ document.addEventListener('DOMContentLoaded', function() {
                                                 fetch(`/api/wilayah/villages/${district.id}`)
                                                     .then(res => res.json())
                                                     .then(data => {
+                                                        villageSelect.empty().append($('<option>', { value: '', text: 'Pilih Kelurahan' }));
                                                         data.forEach(village => {
-                                                            const option = new Option(village.name, village.name, false, false);
-                                                            villageSelect.append(option);
+                                                            villageSelect.append($('<option>', {
+                                                                value: village.name,
+                                                                text: village.name
+                                                            }));
                                                         });
-                                                        villageSelect.prop('disabled', false).trigger('change');
+                                                        villageSelect.prop('disabled', false).trigger('change.select2');
                                                     })
                                                     .catch(err => console.error('Error loading villages:', err));
                                             }
