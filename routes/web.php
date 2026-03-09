@@ -44,13 +44,13 @@ Route::middleware(['auth'])->group(function () {
         Route::get('/', [PeminjamanController::class, 'index'])->name('index');
         Route::get('/create', [PeminjamanController::class, 'create'])->name('create');
         Route::post('/', [PeminjamanController::class, 'store'])->name('store');
+        Route::get('/menunggu', [PeminjamanController::class, 'menunggu'])->name('menunggu');
+        Route::get('/terlambat', [PeminjamanController::class, 'terlambat'])->name('terlambat');
         Route::get('/{peminjaman}', [PeminjamanController::class, 'show'])->name('show');
         Route::post('/{peminjaman}/setujui', [PeminjamanController::class, 'setujui'])->name('setujui');
         Route::post('/{peminjaman}/tolak', [PeminjamanController::class, 'tolak'])->name('tolak');
         Route::post('/{peminjaman}/proses', [PeminjamanController::class, 'proses'])->name('proses');
         Route::post('/{peminjaman}/batalkan', [PeminjamanController::class, 'batalkan'])->name('batalkan');
-        Route::get('/menunggu', [PeminjamanController::class, 'menunggu'])->name('menunggu');
-        Route::get('/terlambat', [PeminjamanController::class, 'terlambat'])->name('terlambat');
     });
 
     Route::prefix('pengembalian')->name('pengembalian.')->group(function () {
