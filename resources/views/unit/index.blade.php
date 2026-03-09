@@ -50,18 +50,7 @@
         </table>
 
         @if($units->hasPages())
-        <div class="card-footer">
-            <div class="pagination-wrapper">
-                <div class="pagination-info">
-                    <span>Menampilkan</span>
-                    <span class="badge">{{ $units->firstItem() ?? 0 }} - {{ $units->lastItem() ?? 0 }}</span>
-                    <span>dari</span>
-                    <span class="badge">{{ $units->total() }}</span>
-                    <span>data</span>
-                </div>
-                {{ $units->links() }}
-            </div>
-        </div>
+        {{ $units->links('vendor.pagination.medtrack') }}
         @endif
     </div>
 </div>

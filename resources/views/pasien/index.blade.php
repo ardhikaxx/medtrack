@@ -80,18 +80,7 @@
         </div>
 
         @if($pasiens->hasPages())
-        <div class="card-footer">
-            <div class="pagination-wrapper">
-                <div class="pagination-info">
-                    <span>Menampilkan</span>
-                    <span class="badge">{{ $pasiens->firstItem() ?? 0 }} - {{ $pasiens->lastItem() ?? 0 }}</span>
-                    <span>dari</span>
-                    <span class="badge">{{ $pasiens->total() }}</span>
-                    <span>data</span>
-                </div>
-                {{ $pasiens->links() }}
-            </div>
-        </div>
+        {{ $pasiens->links('vendor.pagination.medtrack') }}
         @endif
     </div>
 </div>

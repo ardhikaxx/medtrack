@@ -781,3 +781,143 @@ body.medtrack-body {
         justify-content: center;
     }
 }
+
+/* ============================================
+   MEDTRACK CUSTOM PAGINATION
+   ============================================ */
+.medtrack-pagination-wrapper {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 24px 0;
+    flex-wrap: wrap;
+    gap: 20px;
+    border-top: 1px solid #e8ecf0;
+    margin-top: 8px;
+}
+
+.pagination-info-custom {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    font-family: 'Segoe UI', system-ui, sans-serif;
+}
+
+.pagination-info-custom .info-text {
+    color: #6b7c8c;
+    font-size: 14px;
+    font-weight: 500;
+}
+
+.pagination-info-custom .info-number {
+    background: linear-gradient(135deg, #1a6f8a 0%, #145a72 100%);
+    color: #fff;
+    padding: 4px 12px;
+    border-radius: 20px;
+    font-size: 13px;
+    font-weight: 600;
+    min-width: 32px;
+    text-align: center;
+}
+
+.pagination-info-custom .info-number.total {
+    background: linear-gradient(135deg, #27ae60 0%, #1e8449 100%);
+}
+
+.pagination-nav-custom {
+    display: flex;
+    align-items: center;
+}
+
+.pagination-custom {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+.page-item-custom {
+    margin: 0 2px;
+}
+
+.page-link-custom {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 42px;
+    height: 42px;
+    padding: 0 14px;
+    border: none;
+    border-radius: 12px;
+    background: #f3f6f9;
+    color: #4a5568;
+    font-size: 14px;
+    font-weight: 600;
+    text-decoration: none;
+    cursor: pointer;
+    transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+    box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+}
+
+.page-link-custom i {
+    font-size: 14px;
+    font-weight: 700;
+}
+
+.page-item-custom:not(.disabled):not(.active) .page-link-custom:hover {
+    background: #fff;
+    color: #1a6f8a;
+    transform: translateY(-3px);
+    box-shadow: 0 6px 16px rgba(26,111,138,0.2);
+}
+
+.page-item-custom.active .page-link-custom {
+    background: linear-gradient(135deg, #1a6f8a 0%, #145a72 100%);
+    color: #fff;
+    box-shadow: 0 6px 20px rgba(26,111,138,0.35);
+    transform: translateY(-2px);
+}
+
+.page-item-custom.disabled .page-link-custom {
+    background: #f0f2f5;
+    color: #c4c8cc;
+    cursor: not-allowed;
+    box-shadow: none;
+}
+
+.page-item-custom:first-child .page-link-custom {
+    border-radius: 12px 6px 6px 12px;
+}
+
+.page-item-custom:last-child .page-link-custom {
+    border-radius: 6px 12px 12px 6px;
+}
+
+/* Table-specific pagination */
+.table-responsive + .medtrack-pagination-wrapper {
+    padding: 16px 0 4px;
+}
+
+/* Responsive */
+@media (max-width: 640px) {
+    .medtrack-pagination-wrapper {
+        flex-direction: column;
+        gap: 16px;
+    }
+    
+    .pagination-info-custom {
+        order: 2;
+    }
+    
+    .pagination-nav-custom {
+        order: 1;
+    }
+    
+    .page-link-custom {
+        min-width: 38px;
+        height: 38px;
+        font-size: 13px;
+    }
+}

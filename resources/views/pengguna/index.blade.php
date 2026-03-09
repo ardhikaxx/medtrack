@@ -57,18 +57,7 @@
         </table>
 
         @if($users->hasPages())
-        <div class="card-footer">
-            <div class="pagination-wrapper">
-                <div class="pagination-info">
-                    <span>Menampilkan</span>
-                    <span class="badge">{{ $users->firstItem() ?? 0 }} - {{ $users->lastItem() ?? 0 }}</span>
-                    <span>dari</span>
-                    <span class="badge">{{ $users->total() }}</span>
-                    <span>data</span>
-                </div>
-                {{ $users->links() }}
-            </div>
-        </div>
+        {{ $users->links('vendor.pagination.medtrack') }}
         @endif
     </div>
 </div>

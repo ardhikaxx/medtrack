@@ -55,18 +55,7 @@
         </div>
 
         @if($peminjamans->hasPages())
-        <div class="card-footer">
-            <div class="pagination-wrapper">
-                <div class="pagination-info">
-                    <span>Menampilkan</span>
-                    <span class="badge">{{ $peminjamans->firstItem() ?? 0 }} - {{ $peminjamans->lastItem() ?? 0 }}</span>
-                    <span>dari</span>
-                    <span class="badge">{{ $peminjamans->total() }}</span>
-                    <span>data</span>
-                </div>
-                {{ $peminjamans->links() }}
-            </div>
-        </div>
+        {{ $peminjamans->links('vendor.pagination.medtrack') }}
         @endif
     </div>
 </div>
