@@ -10,6 +10,12 @@ use App\Http\Controllers\PengembalianController;
 use App\Http\Controllers\PenggunaController;
 use App\Http\Controllers\UnitController;
 use App\Http\Controllers\LaporanController;
+use App\Http\Controllers\Api\WilayahController;
+
+Route::get('/api/wilayah/provinces', [WilayahController::class, 'provinces']);
+Route::get('/api/wilayah/regencies/{provinceId}', [WilayahController::class, 'regencies']);
+Route::get('/api/wilayah/districts/{regencyId}', [WilayahController::class, 'districts']);
+Route::get('/api/wilayah/villages/{districtId}', [WilayahController::class, 'villages']);
 
 Route::get('/login', [AuthController::class, 'showLoginForm'])->name('login');
 Route::post('/login', [AuthController::class, 'login']);
