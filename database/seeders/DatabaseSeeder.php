@@ -16,6 +16,10 @@ class DatabaseSeeder extends Seeder
             UnitSeeder::class,
             UserSeeder::class,
             SettingSeeder::class,
+            PasienSeeder::class,
+            RekamMedisSeeder::class,
+            PeminjamanSeeder::class,
+            PengembalianSeeder::class,
         ]);
     }
 }
