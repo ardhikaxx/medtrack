@@ -52,7 +52,11 @@
         <div class="card-footer">
             <div class="pagination-wrapper">
                 <div class="pagination-info">
-                    Menampilkan {{ $rekamMedis->firstItem() ?? 0 }} - {{ $rekamMedis->lastItem() ?? 0 }} dari {{ $rekamMedis->total() }} data
+                    <span>Menampilkan</span>
+                    <span class="badge">{{ $rekamMedis->firstItem() ?? 0 }} - {{ $rekamMedis->lastItem() ?? 0 }}</span>
+                    <span>dari</span>
+                    <span class="badge">{{ $rekamMedis->total() }}</span>
+                    <span>data</span>
                 </div>
                 {{ $rekamMedis->links() }}
             </div>

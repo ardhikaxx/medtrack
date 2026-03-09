@@ -590,7 +590,7 @@ body.medtrack-body {
 .bg-warning { background-color: #f39c12 !important; }
 .bg-secondary { background-color: #95a5a6 !important; }
 
-/* Custom Pagination Styles */
+/* Enhanced Pagination Styles */
 .pagination-wrapper {
     display: flex;
     align-items: center;
@@ -600,69 +600,135 @@ body.medtrack-body {
     gap: 15px;
 }
 
+.pagination-wrapper.pagination-compact {
+    padding: 12px 0;
+}
+
 .pagination-info {
     color: var(--text-secondary);
     font-size: 14px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.pagination-info .badge {
+    background: var(--primary-light);
+    color: var(--primary);
+    font-weight: 600;
+    padding: 4px 10px;
+    border-radius: 20px;
+    font-size: 13px;
 }
 
 .pagination {
     margin: 0;
     display: flex;
-    gap: 6px;
+    gap: 4px;
 }
 
 .page-link {
     border: none;
-    border-radius: 8px !important;
-    color: var(--text-primary);
-    background: #fff;
-    padding: 8px 14px;
+    border-radius: 10px !important;
+    color: var(--text-secondary);
+    background: #f8fafc;
+    padding: 10px 16px;
     font-size: 14px;
     font-weight: 500;
-    box-shadow: 0 1px 3px rgba(0,0,0,0.08);
-    transition: var(--transition);
-    min-width: 40px;
+    transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+    min-width: 44px;
     text-align: center;
+    position: relative;
+    overflow: hidden;
+}
+
+.page-link::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(135deg, transparent 0%, rgba(26,111,138,0.05) 100%);
+    opacity: 0;
+    transition: opacity 0.2s;
 }
 
 .page-link:hover {
-    background: var(--primary-light);
+    background: #fff;
     color: var(--primary);
-    transform: translateY(-1px);
-    box-shadow: 0 4px 8px rgba(26,111,138,0.15);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(26,111,138,0.15);
+}
+
+.page-link:hover::before {
+    opacity: 1;
 }
 
 .page-item.active .page-link {
-    background: var(--primary);
+    background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
     color: #fff;
-    box-shadow: 0 4px 12px rgba(26,111,138,0.35);
+    box-shadow: 0 6px 16px rgba(26,111,138,0.35);
+    transform: translateY(-2px);
+}
+
+.page-item.active .page-link::before {
+    opacity: 0;
 }
 
 .page-item.disabled .page-link {
     background: #f5f5f5;
-    color: #aaa;
+    color: #ccc;
     box-shadow: none;
     cursor: not-allowed;
+    transform: none;
+}
+
+.page-item.disabled .page-link:hover {
+    transform: none;
+    box-shadow: none;
 }
 
 .page-link i {
+    font-size: 11px;
+    margin: 0 2px;
+}
+
+.page-link .fas {
     font-size: 12px;
 }
 
-/* Pagination with icons */
-.page-item:first-child .page-link {
-    border-radius: 8px;
-}
-
+/* Pagination with arrows */
+.page-item:first-child .page-link,
 .page-item:last-child .page-link {
-    border-radius: 8px;
+    padding: 10px 18px;
+    font-weight: 600;
 }
 
-/* Smaller pagination for compact tables */
+/* Page numbers styling */
+.page-item:not(.active):not(.disabled) .page-link {
+    border: 1px solid transparent;
+}
+
+.page-item:not(.active):not(.disabled) .page-link:hover {
+    border-color: var(--primary-light);
+}
+
+/* Gap between pagination items */
+.page-item {
+    margin: 0 2px;
+}
+
+/* Compact pagination for tables */
 .table-custom + .pagination-wrapper .pagination .page-link {
-    padding: 6px 10px;
+    padding: 8px 12px;
     font-size: 13px;
-    min-width: 34px;
+    min-width: 38px;
+    border-radius: 8px !important;
+}
+
+.table-custom + .pagination-wrapper .pagination-info {
+    font-size: 13px;
 }
 
 /* Card wrapper for pagination */
@@ -675,4 +741,43 @@ body.medtrack-body {
 
 .card-footer .pagination-wrapper {
     padding: 0;
+}
+
+/* Pagination with page numbers ellipsis */
+.pagination .page-item:nth-child(2) .page-link,
+.pagination .page-item:nth-child(3) .page-link {
+    border-radius: 10px 4px 4px 10px;
+}
+
+.pagination .page-item:nth-last-child(2) .page-link,
+.pagination .page-item:nth-last-child(3) .page-link {
+    border-radius: 4px 10px 10px 4px;
+}
+
+/* Smooth page transition animation */
+@keyframes pagePop {
+    0% { transform: scale(0.9); opacity: 0; }
+    100% { transform: scale(1); opacity: 1; }
+}
+
+.page-item.active .page-link {
+    animation: pagePop 0.3s ease-out;
+}
+
+/* Responsive pagination */
+@media (max-width: 576px) {
+    .pagination-wrapper {
+        flex-direction: column;
+        gap: 12px;
+    }
+    
+    .pagination-info {
+        order: 2;
+    }
+    
+    .pagination {
+        order: 1;
+        flex-wrap: wrap;
+        justify-content: center;
+    }
 }

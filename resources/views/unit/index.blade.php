@@ -53,7 +53,11 @@
         <div class="card-footer">
             <div class="pagination-wrapper">
                 <div class="pagination-info">
-                    Menampilkan {{ $units->firstItem() ?? 0 }} - {{ $units->lastItem() ?? 0 }} dari {{ $units->total() }} data
+                    <span>Menampilkan</span>
+                    <span class="badge">{{ $units->firstItem() ?? 0 }} - {{ $units->lastItem() ?? 0 }}</span>
+                    <span>dari</span>
+                    <span class="badge">{{ $units->total() }}</span>
+                    <span>data</span>
                 </div>
                 {{ $units->links() }}
             </div>
