@@ -37,7 +37,7 @@
                     <td>{{ $rm->no_rekam_medis }}</td>
                     <td>{{ $rm->tanggal_kunjungan->format('d/m/Y') }}</td>
                     <td>{{ $rm->poli->nama_unit ?? '-' }}</td>
-                    <td><span class="status-badge dok-{{ $rm->status_dokumen }}">{{ $rm->status_dokumen }}</span></td>
+                    <td><span class="status-badge dok-{{ $rm->status_dokumen }}">{{ str_replace('_', ' ', ucfirst($rm->status_dokumen)) }}</span></td>
                     <td>
                         <a href="{{ route('rekam-medis.show', $rm) }}" class="btn btn-sm btn-outline-primary"><i class="fas fa-eye"></i></a>
                     </td>
