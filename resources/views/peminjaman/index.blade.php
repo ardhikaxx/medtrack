@@ -53,7 +53,17 @@
                 </tbody>
             </table>
         </div>
-        {{ $peminjamans->links() }}
+
+        @if($peminjamans->hasPages())
+        <div class="card-footer">
+            <div class="pagination-wrapper">
+                <div class="pagination-info">
+                    Menampilkan {{ $peminjamans->firstItem() ?? 0 }} - {{ $peminjamans->lastItem() ?? 0 }} dari {{ $peminjamans->total() }} data
+                </div>
+                {{ $peminjamans->links() }}
+            </div>
+        </div>
+        @endif
     </div>
 </div>
 @endsection

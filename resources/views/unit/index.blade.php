@@ -48,7 +48,17 @@
                 @endforelse
             </tbody>
         </table>
-        {{ $units->links() }}
+
+        @if($units->hasPages())
+        <div class="card-footer">
+            <div class="pagination-wrapper">
+                <div class="pagination-info">
+                    Menampilkan {{ $units->firstItem() ?? 0 }} - {{ $units->lastItem() ?? 0 }} dari {{ $units->total() }} data
+                </div>
+                {{ $units->links() }}
+            </div>
+        </div>
+        @endif
     </div>
 </div>
 @endsection

@@ -87,7 +87,16 @@
             </table>
         </div>
 
-        {{ $pengembalians->links() }}
+        @if($pengembalians->hasPages())
+        <div class="card-footer">
+            <div class="pagination-wrapper">
+                <div class="pagination-info">
+                    Menampilkan {{ $pengembalians->firstItem() ?? 0 }} - {{ $pengembalians->lastItem() ?? 0 }} dari {{ $pengembalians->total() }} data
+                </div>
+                {{ $pengembalians->links() }}
+            </div>
+        </div>
+        @endif
     </div>
 </div>
 @endsection

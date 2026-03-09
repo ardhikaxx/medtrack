@@ -47,7 +47,17 @@
                 @endforelse
             </tbody>
         </table>
-        {{ $rekamMedis->links() }}
+
+        @if($rekamMedis->hasPages())
+        <div class="card-footer">
+            <div class="pagination-wrapper">
+                <div class="pagination-info">
+                    Menampilkan {{ $rekamMedis->firstItem() ?? 0 }} - {{ $rekamMedis->lastItem() ?? 0 }} dari {{ $rekamMedis->total() }} data
+                </div>
+                {{ $rekamMedis->links() }}
+            </div>
+        </div>
+        @endif
     </div>
 </div>
 @endsection

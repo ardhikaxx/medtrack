@@ -79,7 +79,16 @@
             </table>
         </div>
 
-        {{ $pasiens->links() }}
+        @if($pasiens->hasPages())
+        <div class="card-footer">
+            <div class="pagination-wrapper">
+                <div class="pagination-info">
+                    Menampilkan {{ $pasiens->firstItem() ?? 0 }} - {{ $pasiens->lastItem() ?? 0 }} dari {{ $pasiens->total() }} data
+                </div>
+                {{ $pasiens->links() }}
+            </div>
+        </div>
+        @endif
     </div>
 </div>
 @endsection
