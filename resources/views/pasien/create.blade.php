@@ -10,32 +10,59 @@
 @push('scripts')
 <script>
 console.log('Script loading...');
-document.addEventListener('DOMContentLoaded', function() {
-    console.log('DOM ready');
+$(document).ready(function() {
+    console.log('jQuery ready');
     
     const provinceSelect = $('#provinsi');
     const regencySelect = $('#kota_kabupaten');
     const districtSelect = $('#kecamatan');
     const villageSelect = $('#kelurahan');
 
-    if (typeof $ === 'undefined') {
-        console.error('jQuery not loaded!');
-        return;
-    }
+    console.log('Province select found:', provinceSelect.length);
     
-    if (typeof $.fn.select2 === 'undefined') {
-        console.error('Select2 not loaded!');
-        return;
-    }
-    
-    console.log('Initializing Select2...');
-    
-    provinceSelect.select2({ placeholder: 'Pilih Provinsi', allowClear: true });
-    regencySelect.select2({ placeholder: 'Pilih Kota/Kabupaten', allowClear: true, disabled: true });
-    districtSelect.select2({ placeholder: 'Pilih Kecamatan', allowClear: true, disabled: true });
-    villageSelect.select2({ placeholder: 'Pilih Kelurahan', allowClear: true, disabled: true });
+    // Initialize Select2
+    provinceSelect.select2({ 
+        placeholder: 'Pilih Provinsi', 
+        allowClear: true,
+        language: {
+            noResults: function() {
+                return "Tidak ada hasil";
+            }
+        }
+    });
+    regencySelect.select2({ 
+        placeholder: 'Pilih Kota/Kabupaten', 
+        allowClear: true, 
+        disabled: true,
+        language: {
+            noResults: function() {
+                return "Tidak ada hasil";
+            }
+        }
+    });
+    districtSelect.select2({ 
+        placeholder: 'Pilih Kecamatan', 
+        allowClear: true, 
+        disabled: true,
+        language: {
+            noResults: function() {
+                return "Tidak ada hasil";
+            }
+        }
+    });
+    villageSelect.select2({ 
+        placeholder: 'Pilih Kelurahan', 
+        allowClear: true, 
+        disabled: true,
+        language: {
+            noResults: function() {
+                return "Tidak ada hasil";
+            }
+        }
+    });
 
-    console.log('Fetching provinces from /api/wilayah/provinces...');
+    console.log('Select2 initialized');
+    console.log('Fetching provinces...');
     
     fetch('/api/wilayah/provinces')
         .then(response => {
@@ -44,164 +71,110 @@ document.addEventListener('DOMContentLoaded', function() {
             return response.json();
         })
         .then(data => {
-            console.log('Provinces data:', data.length, 'items');
-            if (!data || data.length === 0) {
-                console.warn('No provinces data received');
-                return;
-            }
+            console.log('Provinces data:', data);
             
-            // Clear existing options and add new ones
             provinceSelect.empty();
-            provinceSelect.append(new Option('Pilih Provinsi', '', false, false));
+            provinceSelect.append($('<option>', { value: '', text: 'Pilih Provinsi' }));
             
             data.forEach(province => {
                 provinceSelect.append($('<option>', {
-                    value: province.name,
+                    value: province.id,  // Use ID instead of name
                     text: province.name
                 }));
             });
             
-            // Trigger Select2 to rebuild its data
-            provinceSelect.trigger('change.select2');
-            console.log('Provinces populated');
+            provinceSelect.trigger('change');
+            console.log('Provinces populated, count:', data.length);
         })
         .catch(error => {
             console.error('Error fetching provinces:', error);
-            alert('Gagal memuat data provinsi. Silakan refresh halaman.');
+            alert('Gagal memuat data provinsi: ' + error.message);
         });
 
     // Province change - load regencies
     provinceSelect.on('change', function() {
-        const provinceName = $(this).val();
+        const provinceId = $(this).val();
+        const provinceName = $(this).find('option:selected').text();
         
         regencySelect.empty().append($('<option>', { value: '', text: 'Pilih Kota/Kabupaten' }));
         districtSelect.empty().append($('<option>', { value: '', text: 'Pilih Kecamatan' }));
-        districtSelect.prop('disabled', true).trigger('change.select2');
+        districtSelect.prop('disabled', true).trigger('change');
         villageSelect.empty().append($('<option>', { value: '', text: 'Pilih Kelurahan' }));
-        villageSelect.prop('disabled', true).trigger('change.select2');
+        villageSelect.prop('disabled', true).trigger('change');
         
         $('#provinsi_input').val(provinceName);
         
-        if (provinceName) {
-            fetch('/api/wilayah/provinces')
+        if (provinceId) {
+            fetch(`/api/wilayah/regencies/${provinceId}`)
                 .then(res => res.json())
                 .then(data => {
-                    const province = data.find(p => p.name === provinceName);
-                    if (province) {
-                        fetch(`/api/wilayah/regencies/${province.id}`)
-                            .then(res => res.json())
-                            .then(data => {
-                                regencySelect.empty().append($('<option>', { value: '', text: 'Pilih Kota/Kabupaten' }));
-                                data.forEach(regency => {
-                                    regencySelect.append($('<option>', {
-                                        value: regency.name,
-                                        text: regency.name
-                                    }));
-                                });
-                                regencySelect.prop('disabled', false).trigger('change.select2');
-                            })
-                            .catch(err => console.error('Error loading regencies:', err));
-                    }
+                    data.forEach(regency => {
+                        regencySelect.append($('<option>', {
+                            value: regency.id,
+                            text: regency.name
+                        }));
+                    });
+                    regencySelect.prop('disabled', false).trigger('change');
                 })
-                .catch(err => console.error('Error finding province:', err));
+                .catch(err => console.error('Error loading regencies:', err));
         }
     });
 
     // Regency change - load districts
     regencySelect.on('change', function() {
-        const regencyName = $(this).val();
+        const regencyId = $(this).val();
+        const regencyName = $(this).find('option:selected').text();
         
         districtSelect.empty().append($('<option>', { value: '', text: 'Pilih Kecamatan' }));
         villageSelect.empty().append($('<option>', { value: '', text: 'Pilih Kelurahan' }));
-        villageSelect.prop('disabled', true).trigger('change.select2');
+        villageSelect.prop('disabled', true).trigger('change');
         
         $('#kota_kabupaten_input').val(regencyName);
         
-        if (regencyName) {
-            fetch('/api/wilayah/provinces')
+        if (regencyId) {
+            fetch(`/api/wilayah/districts/${regencyId}`)
                 .then(res => res.json())
                 .then(data => {
-                    const province = data.find(p => p.name === provinceSelect.val());
-                    if (province) {
-                        fetch(`/api/wilayah/regencies/${province.id}`)
-                            .then(res => res.json())
-                            .then(data => {
-                                const regency = data.find(r => r.name === regencyName);
-                                if (regency) {
-                                    fetch(`/api/wilayah/districts/${regency.id}`)
-                                        .then(res => res.json())
-                                        .then(data => {
-                                            districtSelect.empty().append($('<option>', { value: '', text: 'Pilih Kecamatan' }));
-                                            data.forEach(district => {
-                                                districtSelect.append($('<option>', {
-                                                    value: district.name,
-                                                    text: district.name
-                                                }));
-                                            });
-                                            districtSelect.prop('disabled', false).trigger('change.select2');
-                                        })
-                                        .catch(err => console.error('Error loading districts:', err));
-                                }
-                            })
-                            .catch(err => console.error('Error loading regencies:', err));
-                    }
+                    data.forEach(district => {
+                        districtSelect.append($('<option>', {
+                            value: district.id,
+                            text: district.name
+                        }));
+                    });
+                    districtSelect.prop('disabled', false).trigger('change');
                 })
-                .catch(err => console.error('Error finding province:', err));
+                .catch(err => console.error('Error loading districts:', err));
         }
     });
 
     // District change - load villages
     districtSelect.on('change', function() {
-        const districtName = $(this).val();
+        const districtId = $(this).val();
+        const districtName = $(this).find('option:selected').text();
         
         villageSelect.empty().append($('<option>', { value: '', text: 'Pilih Kelurahan' }));
         
         $('#kecamatan_input').val(districtName);
         
-        if (districtName) {
-            fetch('/api/wilayah/provinces')
+        if (districtId) {
+            fetch(`/api/wilayah/villages/${districtId}`)
                 .then(res => res.json())
                 .then(data => {
-                    const province = data.find(p => p.name === provinceSelect.val());
-                    if (province) {
-                        fetch(`/api/wilayah/regencies/${province.id}`)
-                            .then(res => res.json())
-                            .then(data => {
-                                const regency = data.find(r => r.name === regencySelect.val());
-                                if (regency) {
-                                    fetch(`/api/wilayah/districts/${regency.id}`)
-                                        .then(res => res.json())
-                                        .then(data => {
-                                            const district = data.find(d => d.name === districtName);
-                                            if (district) {
-                                                fetch(`/api/wilayah/villages/${district.id}`)
-                                                    .then(res => res.json())
-                                                    .then(data => {
-                                                        villageSelect.empty().append($('<option>', { value: '', text: 'Pilih Kelurahan' }));
-                                                        data.forEach(village => {
-                                                            villageSelect.append($('<option>', {
-                                                                value: village.name,
-                                                                text: village.name
-                                                            }));
-                                                        });
-                                                        villageSelect.prop('disabled', false).trigger('change.select2');
-                                                    })
-                                                    .catch(err => console.error('Error loading villages:', err));
-                                            }
-                                        })
-                                        .catch(err => console.error('Error loading districts:', err));
-                                }
-                            })
-                            .catch(err => console.error('Error loading regencies:', err));
-                    }
+                    data.forEach(village => {
+                        villageSelect.append($('<option>', {
+                            value: village.id,
+                            text: village.name
+                        }));
+                    });
+                    villageSelect.prop('disabled', false).trigger('change');
                 })
-                .catch(err => console.error('Error finding province:', err));
+                .catch(err => console.error('Error loading villages:', err));
         }
     });
 
     // Village change
     villageSelect.on('change', function() {
-        const villageName = $(this).val();
+        const villageName = $(this).find('option:selected').text();
         $('#kelurahan_input').val(villageName);
     });
 });
