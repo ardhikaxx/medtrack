@@ -270,16 +270,16 @@ Setelah menjalankan `php artisan db:seed`, berikut akun yang tersedia:
 
 | Username | Email | Password | Role |
 |----------|-------|----------|------|
-| admin | admin@husada-clinic.id | password123 | Admin |
-| direktur | direktur@husada-clinic.id | password123 | Direktur |
-| kepala_rm | kepala.rm@husada-clinic.id | password123 | Kepala Rekam Medis |
-| petugas_arsip1 | petugas1.rm@husada-clinic.id | password123 | Petugas Arsip |
-| dr_budi | dr.budi@husada-clinic.id | password123 | Nakes Internal (Dokter) |
-| dr_siti | dr.siti@husada-clinic.id | password123 | Nakes Internal (Dokter) |
-| ns_ratna | ratna.ns@husada-clinic.id | password123 | Nakes Internal (Perawat) |
-| dr_ahmad_ext | ahmad.fauzi@fkub.ac.id | password123 | Nakes Eksternal |
+| admin | admin@husada-clinic.id | password | Admin |
+| direktur | direktur@husada-clinic.id | password | Direktur |
+| kepala_rm | kepala.rm@husada-clinic.id | password | Kepala Rekam Medis |
+| petugas_arsip1 | petugas1.rm@husada-clinic.id | password | Petugas Arsip |
+| dr_budi | dr.budi@husada-clinic.id | password | Nakes Internal (Dokter) |
+| dr_siti | dr.siti@husada-clinic.id | password | Nakes Internal (Dokter) |
+| ns_ratna | ratna.ns@husada-clinic.id | password | Nakes Internal (Perawat) |
+| dr_ahmad_ext | ahmad.fauzi@fkub.ac.id | password | Nakes Eksternal |
 
-**Catatan:** Semua password default adalah `password123`
+**Catatan:** Semua password default adalah `password`
 
 ---
 

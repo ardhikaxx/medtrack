@@ -140,7 +140,7 @@ class UserSeeder extends Seeder
         foreach ($users as $userData) {
             User::create([
                 ...$userData,
-                'password' => Hash::make('password123'),
+                'password' => Hash::make('password'),
             ]);
         }
     }
