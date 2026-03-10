@@ -15,6 +15,7 @@ use App\Http\Controllers\ProfilController;
 use App\Http\Controllers\ExportController;
 use App\Http\Controllers\NotificationController;
 use App\Http\Controllers\SearchController;
+use App\Http\Controllers\ScannerController;
 
 Route::get('/api/wilayah/provinces', [WilayahController::class, 'provinces']);
 Route::get('/api/wilayah/regencies/{provinceId}', [WilayahController::class, 'regencies']);
@@ -118,4 +119,7 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/search/results', [SearchController::class, 'results'])->name('search.results');
 
     Route::get('/calendar', [DashboardController::class, 'calendar'])->name('calendar');
+
+    Route::get('/scanner', [ScannerController::class, 'index'])->name('scanner');
+    Route::get('/scanner/lookup', [ScannerController::class, 'lookup'])->name('scanner.lookup');
 });

@@ -24,6 +24,10 @@
                 <i class="fas fa-search nav-icon"></i>
                 <span>Pencarian</span>
             </a>
+            <a href="{{ route('scanner') }}" class="nav-link {{ request()->routeIs('scanner*') ? 'active' : '' }}">
+                <i class="fas fa-qrcode nav-icon"></i>
+                <span>QR Scanner</span>
+            </a>
         </div>
 
         <div class="nav-section">
