@@ -69,17 +69,17 @@
                 <div class="dropdown">
                     <button class="btn user-avatar-btn d-flex align-items-center gap-2" data-bs-toggle="dropdown">
                         @if(auth()->user()->foto_profil)
-                        <img src="{{ asset('storage/'.auth()->user()->foto_profil) }}" class="avatar-sm rounded-circle" alt="">
+                        <img src="{{ asset('storage/'.auth()->user()->foto_profil) }}" class="rounded-circle" style="width:36px;height:36px;object-fit:cover;" alt="">
                         @else
-                        <div class="avatar-placeholder">
+                        <div class="avatar avatar-sm avatar-primary">
                             {{ strtoupper(substr(auth()->user()->nama_lengkap, 0, 1)) }}
                         </div>
                         @endif
                         <div class="d-none d-md-block text-start">
-                            <div class="user-name">{{ auth()->user()->nama_lengkap }}</div>
-                            <div class="user-role">{{ auth()->user()->role->label ?? '' }}</div>
+                            <div class="fw-semibold" style="font-size:13px;line-height:1.2;">{{ auth()->user()->nama_lengkap }}</div>
+                            <div style="font-size:11px;color:var(--text-secondary);line-height:1.2;">{{ auth()->user()->role->label ?? '' }}</div>
                         </div>
-                        <i class="fas fa-chevron-down ms-1 small"></i>
+                        <i class="fas fa-chevron-down ms-1 small" style="font-size:10px;"></i>
                     </button>
                     <ul class="dropdown-menu dropdown-menu-end">
                         <li><a class="dropdown-item" href="#"><i class="fas fa-user me-2"></i>Profil Saya</a></li>
