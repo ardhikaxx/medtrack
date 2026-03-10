@@ -25,6 +25,10 @@ MedTrack adalah sistem informasi berbasis web untuk mengelola peminjaman dan pen
 | Tables | DataTables 1.13+ |
 | Dropdown | Select2 4.1 |
 | Alerts | SweetAlert2 |
+| Charts | Chart.js |
+| QR Code | simple-qrcode |
+| Export Excel | Maatwebsite Excel |
+| Export PDF | DomPDF |
 
 ---
 
@@ -81,12 +85,27 @@ MedTrack adalah sistem informasi berbasis web untuk mengelola peminjaman dan pen
 - Pengaturan role dan permissions
 - Aktivitas logging (audit trail)
 
-### 7. Dashboard
-- Statistik peminjaman
-- Grafik aktivitas
+### 7. Dashboard Interaktif
+- Statistik peminjaman real-time
+- **Grafik Line Chart** - Peminjaman & pengembalian per bulan
+- **Grafik Doughnut Chart** - Status peminjaman
 - Peminjaman menunggu persetujuan
 - Peminjaman terlambat
 - Aktivitas terkini
+
+### 8. Laporan & Export
+- Laporan peminjaman
+- Laporan pengembalian
+- Laporan keterlambatan
+- Statistik dokumen
+- Rekap bulanan
+- **Export ke Excel** (.xlsx)
+- **Export ke PDF**
+
+### 9. QR Code & Label
+- **QR Code otomatis** di detail dokumen RM
+- **Print Label** - Cetak label QR untuk dokumen RM
+- Scan QR untuk tracking dokumen
 
 ---
 
@@ -171,6 +190,9 @@ MedTrack adalah sistem informasi berbasis web untuk mengelola peminjaman dan pen
 ```
 medtrack/
 ├── app/
+│   ├── Exports/                  # Export Excel
+│   │   ├── PeminjamanExport.php
+│   │   └── PengembalianExport.php
 │   ├── Http/
 │   │   ├── Controllers/
 │   │   │   ├── AuthController.php
@@ -182,6 +204,8 @@ medtrack/
 │   │   │   ├── PenggunaController.php
 │   │   │   ├── UnitController.php
 │   │   │   ├── LaporanController.php
+│   │   │   ├── ExportController.php
+│   │   │   ├── ProfilController.php
 │   │   │   └── Api/WilayahController.php
 │   │   └── Middleware/
 │   ├── Models/
@@ -202,6 +226,7 @@ medtrack/
 │   │   ├── peminjaman/
 │   │   ├── pengembalian/
 │   │   ├── laporan/
+│   │   ├── exports/            # PDF Templates
 │   │   ├── pengguna/
 │   │   ├── unit/
 │   │   └── vendor/pagination/
@@ -285,20 +310,28 @@ Setelah menjalankan `php artisan db:seed`, berikut akun yang tersedia:
 
 ## 📝 Fitur API
 
-Sistem menyediakan API untuk data wilayah Indonesia:
-
+### Wilayah Indonesia
 | Endpoint | Deskripsi |
 |----------|-----------|
-| `GET /api/wilayah/provinces` | Daftar Provinsi |
+| `GET //provinces`api/wilayah | Daftar Provinsi |
 | `GET /api/wilayah/regencies/{id}` | Daftar Kota/Kabupaten |
 | `GET /api/wilayah/districts/{id}` | Daftar Kecamatan |
 | `GET /api/wilayah/villages/{id}` | Daftar Kelurahan |
+
+### Export Laporan
+| Endpoint | Deskripsi |
+|----------|-----------|
+| `GET /export/peminjaman/excel` | Export Peminjaman ke Excel |
+| `GET /export/peminjaman/pdf` | Export Peminjaman ke PDF |
+| `GET /export/pengembalian/excel` | Export Pengembalian ke Excel |
+| `GET /export/pengembalian/pdf` | Export Pengembalian ke PDF |
+| `GET /export/rekap-bulanan/pdf` | Export Rekap Bulanan PDF |
 
 ---
 
 ## 📄 Lisensi
 
-Copyright © 2024 Klinik Pratama Rawat Inap Husada. All rights reserved.
+Copyright © 2026 Klinik Pratama Rawat Inap Husada. All rights reserved.
 
 ---
 
