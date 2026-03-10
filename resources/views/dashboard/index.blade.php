@@ -16,45 +16,33 @@
     </a>
 </div>
 
-<div class="row g-3 mb-4">
+<div class="row g-4 mb-4">
     <div class="col-md-3 col-sm-6">
-        <a href="{{ route('pasien.index') }}" class="stat-card">
-            <div class="stat-icon primary"><i class="fas fa-user-injured"></i></div>
-            <div>
-                <div class="stat-value">{{ number_format($stats['total_pasien']) }}</div>
-                <div class="stat-label">Total Pasien</div>
-                <div class="stat-change up"><i class="fas fa-arrow-up me-1"></i>{{ $stats['pasien_baru_bulan_ini'] }} bulan ini</div>
-            </div>
+        <a href="{{ route('pasien.index') }}" class="stat-card" style="text-decoration: none;">
+            <div class="stat-card-icon primary"><i class="fas fa-user-injured"></i></div>
+            <div class="stat-card-value">{{ number_format($stats['total_pasien']) }}</div>
+            <div class="stat-card-label">Total Pasien</div>
         </a>
     </div>
     <div class="col-md-3 col-sm-6">
-        <a href="{{ route('rekam-medis.index') }}" class="stat-card">
-            <div class="stat-icon success"><i class="fas fa-file-medical"></i></div>
-            <div>
-                <div class="stat-value">{{ number_format($stats['total_dokumen']) }}</div>
-                <div class="stat-label">Total Dokumen RM</div>
-                <div class="stat-change">{{ $stats['dokumen_tersedia'] }} tersedia</div>
-            </div>
+        <a href="{{ route('rekam-medis.index') }}" class="stat-card" style="text-decoration: none;">
+            <div class="stat-card-icon success"><i class="fas fa-file-medical"></i></div>
+            <div class="stat-card-value">{{ number_format($stats['total_dokumen']) }}</div>
+            <div class="stat-card-label">Total Dokumen RM</div>
         </a>
     </div>
     <div class="col-md-3 col-sm-6">
-        <a href="{{ route('peminjaman.index') }}" class="stat-card">
-            <div class="stat-icon purple"><i class="fas fa-hand-holding-medical"></i></div>
-            <div>
-                <div class="stat-value">{{ $stats['peminjaman_aktif'] }}</div>
-                <div class="stat-label">Peminjaman Aktif</div>
-                <div class="stat-change">{{ $stats['menunggu_persetujuan'] }} menunggu</div>
-            </div>
+        <a href="{{ route('peminjaman.index') }}" class="stat-card" style="text-decoration: none;">
+            <div class="stat-card-icon" style="background: linear-gradient(135deg, #f3eaff 0%, #e8d4f7 100%); color: #8e44ad;"><i class="fas fa-hand-holding-medical"></i></div>
+            <div class="stat-card-value">{{ $stats['peminjaman_aktif'] }}</div>
+            <div class="stat-card-label">Peminjaman Aktif</div>
         </a>
     </div>
     <div class="col-md-3 col-sm-6">
-        <a href="{{ route('peminjaman.terlambat') }}" class="stat-card">
-            <div class="stat-icon danger"><i class="fas fa-exclamation-circle"></i></div>
-            <div>
-                <div class="stat-value">{{ $stats['terlambat'] }}</div>
-                <div class="stat-label">Dokumen Terlambat</div>
-                <div class="stat-change down">Perlu tindakan segera</div>
-            </div>
+        <a href="{{ route('peminjaman.terlambat') }}" class="stat-card" style="text-decoration: none;">
+            <div class="stat-card-icon danger"><i class="fas fa-exclamation-circle"></i></div>
+            <div class="stat-card-value">{{ $stats['terlambat'] }}</div>
+            <div class="stat-card-label">Dokumen Terlambat</div>
         </a>
     </div>
 </div>
@@ -74,8 +62,8 @@
             </div>
             <div class="card-body p-0">
                 @forelse($menungguPersetujuan as $pm)
-                <div class="d-flex align-items-center gap-3 p-3 border-bottom">
-                    <div class="avatar-placeholder flex-shrink-0">
+                <div class="d-flex align-items-center gap-3 p-3" style="border-bottom: 1px solid #f0f4f8;">
+                    <div class="avatar avatar-md avatar-primary flex-shrink-0">
                         {{ strtoupper(substr($pm->peminjam->nama_lengkap, 0, 1)) }}
                     </div>
                     <div class="flex-grow-1">
@@ -92,9 +80,9 @@
                     </div>
                 </div>
                 @empty
-                <div class="text-center py-5 text-muted">
-                    <i class="fas fa-check-circle fa-2x mb-2 text-success"></i>
-                    <div>Semua permohonan sudah diproses</div>
+                <div class="empty-state py-5">
+                    <div class="empty-state-icon"><i class="fas fa-check-circle"></i></div>
+                    <div class="empty-state-title">Semua permohonan sudah diproses</div>
                 </div>
                 @endforelse
             </div>
@@ -112,19 +100,19 @@
             </div>
             <div class="card-body p-0">
                 @forelse($terlambat as $pm)
-                <div class="p-3 border-bottom">
+                <div class="p-3" style="border-bottom: 1px solid #f0f4f8;">
                     <div class="fw-semibold" style="font-size:13px">{{ $pm->peminjam->nama_lengkap }}</div>
                     <div class="d-flex justify-content-between align-items-center mt-1">
                         <span style="font-size:12px; color:var(--text-secondary)">{{ $pm->no_peminjaman }}</span>
-                        <span class="status-badge status-terlambat" style="font-size:11px">
+                        <span class="status-badge status-terlambat">
                             <i class="fas fa-clock"></i> {{ $pm->hari_terlambat }} hari
                         </span>
                     </div>
                 </div>
                 @empty
-                <div class="text-center py-5 text-muted">
-                    <i class="fas fa-smile fa-2x mb-2 text-success"></i>
-                    <div>Tidak ada yang terlambat</div>
+                <div class="empty-state py-5">
+                    <div class="empty-state-icon" style="background: linear-gradient(135deg, #e8f8f0 0%, #d4efdf 100%); color: #27ae60;"><i class="fas fa-smile"></i></div>
+                    <div class="empty-state-title">Tidak ada yang terlambat</div>
                 </div>
                 @endforelse
             </div>
