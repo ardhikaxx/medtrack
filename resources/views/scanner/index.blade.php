@@ -68,6 +68,7 @@
         </div>
     </div>
 </div>
+@endsection
 
 @push('scripts')
 <script src="https://unpkg.com/html5-qrcode" type="text/javascript"></script>
