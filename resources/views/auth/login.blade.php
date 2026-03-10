@@ -67,6 +67,7 @@
             margin-bottom: 12px;
             display: inline-block;
             animation: pulse 2s ease-in-out infinite;
+            color: #fff;
         }
         @keyframes pulse {
             0%, 100% { transform: scale(1); }
@@ -76,11 +77,13 @@
             font-size: 28px;
             font-weight: 700;
             letter-spacing: -0.5px;
+            color: #fff;
         }
         .login-subtitle {
             font-size: 14px;
             opacity: 0.9;
             margin-top: 4px;
+            color: #fff;
         }
         .login-hospital {
             font-size: 11px;
@@ -88,6 +91,7 @@
             margin-top: 8px;
             letter-spacing: 1px;
             text-transform: uppercase;
+            color: #fff;
         }
         .login-body {
             padding: 36px;
