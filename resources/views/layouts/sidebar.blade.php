@@ -68,6 +68,10 @@
                 <i class="fas fa-users-cog nav-icon"></i>
                 <span>Pengguna</span>
             </a>
+            <a href="{{ route('profil.index') }}" class="nav-link {{ request()->routeIs('profil.*') ? 'active' : '' }}">
+                <i class="fas fa-user-cog nav-icon"></i>
+                <span>Profil Saya</span>
+            </a>
         </div>
     </nav>
 

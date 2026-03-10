@@ -11,6 +11,7 @@ use App\Http\Controllers\PenggunaController;
 use App\Http\Controllers\UnitController;
 use App\Http\Controllers\LaporanController;
 use App\Http\Controllers\Api\WilayahController;
+use App\Http\Controllers\ProfilController;
 
 Route::get('/api/wilayah/provinces', [WilayahController::class, 'provinces']);
 Route::get('/api/wilayah/regencies/{provinceId}', [WilayahController::class, 'regencies']);
@@ -88,4 +89,10 @@ Route::middleware(['auth'])->group(function () {
     });
 
     Route::resource('unit', UnitController::class)->only(['index', 'store', 'update', 'destroy']);
+
+    Route::prefix('profil')->name('profil.')->group(function () {
+        Route::get('/', [ProfilController::class, 'index'])->name('index');
+        Route::put('/update', [ProfilController::class, 'update'])->name('update');
+        Route::put('/password', [ProfilController::class, 'updatePassword'])->name('password');
+    });
 });
