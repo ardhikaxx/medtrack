@@ -34,7 +34,7 @@
             </div>
             <div class="card-body">
                 <div class="qrcode-display mb-3">
-                    <img src="data:image/png;base64,{{ base64_encode(QrCode::format('png')->size(150)->generate($rekamMedis->getQrCodeUrl())) }}" 
+                    <img src="data:image/svg+xml;base64,{{ base64_encode(QrCode::format('svg')->size(150)->generate($rekamMedis->getQrCodeUrl())) }}" 
                          alt="QR Code" class="img-fluid" style="max-width: 150px;">
                 </div>
                 <div class="text-muted" style="font-size: 11px;">Scan untuk lihat detail</div>
@@ -50,7 +50,7 @@
                 <div id="label-preview" class="label-print-preview">
                     <div class="label-content">
                         <div class="label-qr">
-                            <img src="data:image/png;base64,{{ base64_encode(QrCode::format('png')->size(80)->generate($rekamMedis->getQrCodeUrl())) }}" 
+                            <img src="data:image/svg+xml;base64,{{ base64_encode(QrCode::format('svg')->size(80)->generate($rekamMedis->getQrCodeUrl())) }}" 
                                  alt="QR" style="width: 80px; height: 80px;">
                         </div>
                         <div class="label-info">
