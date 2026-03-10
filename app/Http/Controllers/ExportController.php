@@ -72,10 +72,10 @@ class ExportController extends Controller
         $query = Pengembalian::with(['peminjaman.peminjam', 'peminjaman.rekamMedis', 'petugas']);
 
         if ($startDate && $endDate) {
-            $query->whereBetween('tanggal_kembali', [$startDate, $endDate]);
+            $query->whereBetween('tanggal_pengembalian', [$startDate, $endDate]);
         }
 
-        $pengembalian = $query->orderBy('tanggal_kembali', 'desc')->get();
+        $pengembalian = $query->orderBy('tanggal_pengembalian', 'desc')->get();
 
         $pdf = Pdf::loadView('exports.pengembalian-pdf', [
             'pengembalian' => $pengembalian,
@@ -100,8 +100,8 @@ class ExportController extends Controller
             ->get();
 
         $pengembalian = Pengembalian::with(['peminjaman.peminjam', 'petugas'])
-            ->whereMonth('tanggal_kembali', $bulan)
-            ->whereYear('tanggal_kembali', $tahun)
+            ->whereMonth('tanggal_pengembalian', $bulan)
+            ->whereYear('tanggal_pengembalian', $tahun)
             ->get();
 
         $stats = [

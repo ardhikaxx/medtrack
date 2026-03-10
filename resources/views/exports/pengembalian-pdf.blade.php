@@ -44,7 +44,7 @@
                 <td>{{ $pg->no_pengembalian }}</td>
                 <td>{{ $pg->peminjaman->no_peminjaman ?? '-' }}</td>
                 <td>{{ $pg->peminjaman->peminjam->nama_lengkap ?? '-' }}</td>
-                <td>{{ $pg->tanggal_kembali->format('d/m/Y') }}</td>
+                <td>{{ $pg->tanggal_pengembalian->format('d/m/Y') }}</td>
                 <td>{{ $pg->petugas->nama_lengkap ?? '-' }}</td>
                 <td>{{ $pg->kondisi_dokumen ?? 'Baik' }}</td>
             </tr>

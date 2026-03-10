@@ -71,7 +71,7 @@
                 <td>{{ $pm->peminjam->nama_lengkap ?? '-' }}</td>
                 <td>{{ $pm->rekamMedis->count() }}</td>
                 <td>{{ $pm->tanggal_pinjam->format('d/m/Y') }}</td>
-                <td>{{ $pm->tanggal_kembali->format('d/m/Y') }}</td>
+                <td>{{ $pm->tanggal_kembali_rencana->format('d/m/Y') }}</td>
                 <td>{{ ucfirst($pm->status_peminjaman) }}</td>
             </tr>
             @endforeach

@@ -58,8 +58,8 @@ class DashboardController extends Controller
             ->pluck('total', 'bulan')
             ->toArray();
 
-        $pengembalianPerBulan = Pengembalian::selectRaw('MONTH(tanggal_kembali) as bulan, COUNT(*) as total')
-            ->whereYear('tanggal_kembali', $tahun)
+        $pengembalianPerBulan = Pengembalian::selectRaw('MONTH(tanggal_pengembalian) as bulan, COUNT(*) as total')
+            ->whereYear('tanggal_pengembalian', $tahun)
             ->groupBy('bulan')
             ->pluck('total', 'bulan')
             ->toArray();

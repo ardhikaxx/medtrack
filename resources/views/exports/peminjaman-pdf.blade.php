@@ -54,7 +54,7 @@
                 <td>{{ $pm->rekamMedis->count() }}</td>
                 <td>{{ $pm->tujuan_peminjaman }}</td>
                 <td>{{ $pm->tanggal_pinjam->format('d/m/Y') }}</td>
-                <td>{{ $pm->tanggal_kembali->format('d/m/Y') }}</td>
+                <td>{{ $pm->tanggal_kembali_rencana->format('d/m/Y') }}</td>
                 <td>
                     @php
                         $statusClass = match($pm->status_peminjaman) {

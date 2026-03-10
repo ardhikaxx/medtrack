@@ -23,10 +23,10 @@ class PengembalianExport implements FromCollection, WithHeadings, WithMapping
         $query = Pengembalian::with(['peminjaman.peminjam', 'peminjaman.rekamMedis', 'petugas']);
 
         if ($this->startDate && $this->endDate) {
-            $query->whereBetween('tanggal_kembali', [$this->startDate, $this->endDate]);
+            $query->whereBetween('tanggal_pengembalian', [$this->startDate, $this->endDate]);
         }
 
-        return $query->orderBy('tanggal_kembali', 'desc')->get();
+        return $query->orderBy('tanggal_pengembalian', 'desc')->get();
     }
 
     public function headings(): array

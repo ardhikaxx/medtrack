@@ -260,7 +260,6 @@ body.medtrack-body {
     z-index: 900;
     box-shadow: 0 2px 12px rgba(0,0,0,0.04);
 }
-}
 
 .btn-icon {
     width: 38px;
@@ -1573,11 +1572,6 @@ body.medtrack-body {
     gap: 6px;
     white-space: nowrap;
     margin-left: auto;
-}
-    border-radius: 20px;
-    display: flex;
-    align-items: center;
-    gap: 4px;
 }
 
 .stat-card-trend-badge.up {
