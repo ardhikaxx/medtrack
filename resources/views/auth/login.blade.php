@@ -229,12 +229,6 @@
                     <i class="fas fa-sign-in-alt me-2"></i>Masuk ke Sistem
                 </button>
             </form>
-            <div class="login-footer">
-                <div class="login-footer-text">Default Akun Demo</div>
-                <div class="login-credentials">
-                    <code>admin@husada-clinic.id</code> / <code>password</code>
-                </div>
-            </div>
         </div>
     </div>
     <script>
