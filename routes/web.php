@@ -13,6 +13,8 @@ use App\Http\Controllers\LaporanController;
 use App\Http\Controllers\Api\WilayahController;
 use App\Http\Controllers\ProfilController;
 use App\Http\Controllers\ExportController;
+use App\Http\Controllers\NotificationController;
+use App\Http\Controllers\SearchController;
 
 Route::get('/api/wilayah/provinces', [WilayahController::class, 'provinces']);
 Route::get('/api/wilayah/regencies/{provinceId}', [WilayahController::class, 'regencies']);
@@ -104,4 +106,16 @@ Route::middleware(['auth'])->group(function () {
         Route::put('/update', [ProfilController::class, 'update'])->name('update');
         Route::put('/password', [ProfilController::class, 'updatePassword'])->name('password');
     });
+
+    Route::prefix('notifications')->name('notifications.')->group(function () {
+        Route::get('/', [NotificationController::class, 'index'])->name('index');
+        Route::get('/unread', [NotificationController::class, 'getUnread'])->name('unread');
+        Route::post('/{notification}/read', [NotificationController::class, 'markAsRead'])->name('read');
+        Route::post('/mark-all-read', [NotificationController::class, 'markAllAsRead'])->name('markAllRead');
+    });
+
+    Route::get('/search', [SearchController::class, 'index'])->name('search');
+    Route::get('/search/results', [SearchController::class, 'results'])->name('search.results');
+
+    Route::get('/calendar', [DashboardController::class, 'calendar'])->name('calendar');
 });

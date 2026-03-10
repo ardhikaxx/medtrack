@@ -16,6 +16,14 @@
                 <i class="fas fa-th-large nav-icon"></i>
                 <span>Dashboard</span>
             </a>
+            <a href="{{ route('calendar') }}" class="nav-link {{ request()->routeIs('calendar') ? 'active' : '' }}">
+                <i class="fas fa-calendar-alt nav-icon"></i>
+                <span>Kalender Jatuh Tempo</span>
+            </a>
+            <a href="{{ route('search') }}" class="nav-link {{ request()->routeIs('search*') ? 'active' : '' }}">
+                <i class="fas fa-search nav-icon"></i>
+                <span>Pencarian</span>
+            </a>
         </div>
 
         <div class="nav-section">

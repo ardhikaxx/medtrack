@@ -99,4 +99,34 @@ class DashboardController extends Controller
 
         return response()->json($peminjamanPerBulan);
     }
+
+    public function calendar()
+    {
+        $events = [];
+
+        $peminjamans = Peminjaman::whereNotNull('tanggal_kembali_rencana')
+            ->whereIn('status_peminjaman', ['dipinjam', 'disetujui', 'menunggu_persetujuan'])
+            ->get();
+
+        foreach ($peminjamans as $peminjaman) {
+            $color = '#dc2626';
+            if ($peminjaman->isTerlambat()) {
+                $color = '#dc2626';
+            } elseif ($peminjaman->tanggal_kembali_rencana <= now()->addDays(3)) {
+                $color = '#f59e0b';
+            } else {
+                $color = '#3b82f6';
+            }
+
+            $events[] = [
+                'id' => $peminjaman->id,
+                'title' => $peminjaman->no_peminjaman,
+                'start' => $peminjaman->tanggal_kembali_rencana->format('Y-m-d'),
+                'color' => $color,
+                'url' => route('peminjaman.show', $peminjaman->id),
+            ];
+        }
+
+        return view('dashboard.calendar', compact('events'));
+    }
 }
