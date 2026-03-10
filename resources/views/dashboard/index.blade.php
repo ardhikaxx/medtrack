@@ -19,8 +19,9 @@
 <div class="row g-4 mb-4">
     <div class="col-md-3 col-sm-6">
         <a href="{{ route('pasien.index') }}" class="stat-card stat-card-pasien" style="text-decoration: none;">
+            <div class="stat-card-decor-circle stat-card-decor-circle-1"></div>
+            <div class="stat-card-decor-circle stat-card-decor-circle-2"></div>
             <div class="stat-card-inner">
-                <div class="stat-card-icon-bg"></div>
                 <div class="stat-card-icon-main">
                     <i class="fas fa-user-injured"></i>
                 </div>
@@ -43,8 +44,9 @@
     </div>
     <div class="col-md-3 col-sm-6">
         <a href="{{ route('rekam-medis.index') }}" class="stat-card stat-card-dokumen" style="text-decoration: none;">
+            <div class="stat-card-decor-circle stat-card-decor-circle-1"></div>
+            <div class="stat-card-decor-circle stat-card-decor-circle-2"></div>
             <div class="stat-card-inner">
-                <div class="stat-card-icon-bg"></div>
                 <div class="stat-card-icon-main">
                     <i class="fas fa-file-medical"></i>
                 </div>
@@ -67,8 +69,9 @@
     </div>
     <div class="col-md-3 col-sm-6">
         <a href="{{ route('peminjaman.index') }}" class="stat-card stat-card-peminjaman" style="text-decoration: none;">
+            <div class="stat-card-decor-circle stat-card-decor-circle-1"></div>
+            <div class="stat-card-decor-circle stat-card-decor-circle-2"></div>
             <div class="stat-card-inner">
-                <div class="stat-card-icon-bg"></div>
                 <div class="stat-card-icon-main">
                     <i class="fas fa-hand-holding-medical"></i>
                 </div>
@@ -91,8 +94,9 @@
     </div>
     <div class="col-md-3 col-sm-6">
         <a href="{{ route('peminjaman.terlambat') }}" class="stat-card stat-card-terlambat" style="text-decoration: none;">
+            <div class="stat-card-decor-circle stat-card-decor-circle-1"></div>
+            <div class="stat-card-decor-circle stat-card-decor-circle-2"></div>
             <div class="stat-card-inner">
-                <div class="stat-card-icon-bg"></div>
                 <div class="stat-card-icon-main">
                     <i class="fas fa-exclamation-triangle"></i>
                 </div>
