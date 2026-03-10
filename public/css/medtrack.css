@@ -1416,6 +1416,27 @@ body.medtrack-body {
 .stat-card-terlambat .stat-card-decor-circle-1,
 .stat-card-terlambat .stat-card-decor-circle-2 { background: #ef4444; }
 
+.stat-card-menunggu {
+    background: linear-gradient(135deg, #fff 0%, #fffbeb 100%);
+    border-color: #fef3c7;
+}
+.stat-card-menunggu .stat-card-decor-circle-1,
+.stat-card-menunggu .stat-card-decor-circle-2 { background: #f59e0b; }
+
+.stat-card-dipinjam {
+    background: linear-gradient(135deg, #fff 0%, #faf5ff 100%);
+    border-color: #f3e8ff;
+}
+.stat-card-dipinjam .stat-card-decor-circle-1,
+.stat-card-dipinjam .stat-card-decor-circle-2 { background: #8b5cf6; }
+
+.stat-card-selesai {
+    background: linear-gradient(135deg, #fff 0%, #ecfdf5 100%);
+    border-color: #d1fae5;
+}
+.stat-card-selesai .stat-card-decor-circle-1,
+.stat-card-selesai .stat-card-decor-circle-2 { background: #10b981; }
+
 .stat-card-icon-main {
     width: 64px;
     height: 64px;
@@ -1454,6 +1475,24 @@ body.medtrack-body {
     box-shadow: 0 8px 24px rgba(239, 68, 68, 0.35);
 }
 
+.stat-card-menunggu .stat-card-icon-main {
+    background: linear-gradient(135deg, #f59e0b 0%, #d97706 100%);
+    color: #fff;
+    box-shadow: 0 8px 24px rgba(245, 158, 11, 0.35);
+}
+
+.stat-card-dipinjam .stat-card-icon-main {
+    background: linear-gradient(135deg, #8b5cf6 0%, #7c3aed 100%);
+    color: #fff;
+    box-shadow: 0 8px 24px rgba(139, 92, 246, 0.35);
+}
+
+.stat-card-selesai .stat-card-icon-main {
+    background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+    color: #fff;
+    box-shadow: 0 8px 24px rgba(16, 185, 129, 0.35);
+}
+
 .stat-card:hover .stat-card-icon-main {
     transform: scale(1.08) rotate(4deg);
     box-shadow: 0 12px 32px rgba(0,0,0,0.25);
@@ -1482,6 +1521,15 @@ body.medtrack-body {
 }
 .stat-card-terlambat .stat-card-number { 
     color: #dc2626; 
+}
+.stat-card-menunggu .stat-card-number { 
+    color: #d97706; 
+}
+.stat-card-dipinjam .stat-card-number { 
+    color: #7c3aed; 
+}
+.stat-card-selesai .stat-card-number { 
+    color: #059669; 
 }
 
 .stat-card-title {

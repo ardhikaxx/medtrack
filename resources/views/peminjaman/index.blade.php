@@ -17,41 +17,93 @@
     </a>
 </div>
 
-<div class="row g-3 mb-4">
-    <div class="col-md-3">
-        <div class="stat-card">
-            <div class="stat-card-icon" style="background: linear-gradient(135deg, #fef3e7 0%, #fdebd9 100%); color: #f39c12;">
-                <i class="fas fa-clock"></i>
+<div class="row g-4 mb-4">
+    <div class="col-md-3 col-sm-6">
+        <a href="{{ route('peminjaman.menunggu') }}" class="stat-card stat-card-menunggu" style="text-decoration: none;">
+            <div class="stat-card-decor-circle stat-card-decor-circle-1"></div>
+            <div class="stat-card-decor-circle stat-card-decor-circle-2"></div>
+            <div class="stat-card-inner">
+                <div class="stat-card-icon-main">
+                    <i class="fas fa-clock"></i>
+                </div>
+                <div class="stat-card-content">
+                    <div class="stat-card-number">{{ \App\Models\Peminjaman::menungguPersetujuan()->count() }}</div>
+                    <div class="stat-card-title">Menunggu Persetujuan</div>
+                </div>
+                <div class="stat-card-info">
+                    <div class="stat-card-info-item">
+                        <i class="fas fa-hourglass-half"></i>
+                        <span>Perlu approval</span>
+                    </div>
+                </div>
             </div>
-            <div class="stat-card-value">{{ \App\Models\Peminjaman::menungguPersetujuan()->count() }}</div>
-            <div class="stat-card-label">Menunggu Persetujuan</div>
+            <div class="stat-card-glow"></div>
+        </a>
+    </div>
+    <div class="col-md-3 col-sm-6">
+        <div class="stat-card stat-card-dipinjam">
+            <div class="stat-card-decor-circle stat-card-decor-circle-1"></div>
+            <div class="stat-card-decor-circle stat-card-decor-circle-2"></div>
+            <div class="stat-card-inner">
+                <div class="stat-card-icon-main">
+                    <i class="fas fa-hand-holding-medical"></i>
+                </div>
+                <div class="stat-card-content">
+                    <div class="stat-card-number">{{ \App\Models\Peminjaman::where('status_peminjaman', 'dipinjam')->count() }}</div>
+                    <div class="stat-card-title">Sedang Dipinjam</div>
+                </div>
+                <div class="stat-card-info">
+                    <div class="stat-card-info-item">
+                        <i class="fas fa-bookmark"></i>
+                        <span>Aktif dipinjam</span>
+                    </div>
+                </div>
+            </div>
+            <div class="stat-card-glow"></div>
         </div>
     </div>
-    <div class="col-md-3">
-        <div class="stat-card">
-            <div class="stat-card-icon" style="background: linear-gradient(135deg, #f3eaff 0%, #e8d4f7 100%); color: #8e44ad;">
-                <i class="fas fa-hand-holding-medical"></i>
+    <div class="col-md-3 col-sm-6">
+        <a href="{{ route('peminjaman.terlambat') }}" class="stat-card stat-card-terlambat" style="text-decoration: none;">
+            <div class="stat-card-decor-circle stat-card-decor-circle-1"></div>
+            <div class="stat-card-decor-circle stat-card-decor-circle-2"></div>
+            <div class="stat-card-inner">
+                <div class="stat-card-icon-main">
+                    <i class="fas fa-exclamation-triangle"></i>
+                </div>
+                <div class="stat-card-content">
+                    <div class="stat-card-number">{{ \App\Models\Peminjaman::terlambat()->count() }}</div>
+                    <div class="stat-card-title">Terlambat</div>
+                </div>
+                <div class="stat-card-info">
+                    <div class="stat-card-info-item">
+                        <i class="fas fa-calendar-times"></i>
+                        <span>Lewati deadline</span>
+                    </div>
+                </div>
             </div>
-            <div class="stat-card-value">{{ \App\Models\Peminjaman::where('status_peminjaman', 'dipinjam')->count() }}</div>
-            <div class="stat-card-label">Sedang Dipinjam</div>
-        </div>
+            <div class="stat-card-glow"></div>
+        </a>
     </div>
-    <div class="col-md-3">
-        <div class="stat-card">
-            <div class="stat-card-icon danger">
-                <i class="fas fa-exclamation-triangle"></i>
+    <div class="col-md-3 col-sm-6">
+        <div class="stat-card stat-card-selesai">
+            <div class="stat-card-decor-circle stat-card-decor-circle-1"></div>
+            <div class="stat-card-decor-circle stat-card-decor-circle-2"></div>
+            <div class="stat-card-inner">
+                <div class="stat-card-icon-main">
+                    <i class="fas fa-check-circle"></i>
+                </div>
+                <div class="stat-card-content">
+                    <div class="stat-card-number">{{ \App\Models\Peminjaman::where('status_peminjaman', 'selesai')->count() }}</div>
+                    <div class="stat-card-title">Selesai</div>
+                </div>
+                <div class="stat-card-info">
+                    <div class="stat-card-info-item">
+                        <i class="fas fa-archive"></i>
+                        <span>Sudah dikembalikan</span>
+                    </div>
+                </div>
             </div>
-            <div class="stat-card-value">{{ \App\Models\Peminjaman::terlambat()->count() }}</div>
-            <div class="stat-card-label">Terlambat</div>
-        </div>
-    </div>
-    <div class="col-md-3">
-        <div class="stat-card">
-            <div class="stat-card-icon success">
-                <i class="fas fa-check-circle"></i>
-            </div>
-            <div class="stat-card-value">{{ \App\Models\Peminjaman::where('status_peminjaman', 'selesai')->count() }}</div>
-            <div class="stat-card-label">Selesai</div>
+            <div class="stat-card-glow"></div>
         </div>
     </div>
 </div>
