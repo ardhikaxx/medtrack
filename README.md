@@ -266,12 +266,20 @@ php artisan serve
 
 ## 🔐 Default Login
 
-| Email | Password | Role |
-|-------|----------|------|
-| admin@medtrack.com | password | Admin |
-| kepala@medtrack.com | password | Kepala Rekam Medis |
-| arsip@medtrack.com | password | Petugas Arsip |
-| dokter@medtrack.com | password | Nakes Internal |
+Setelah menjalankan `php artisan db:seed`, berikut akun yang tersedia:
+
+| Username | Email | Password | Role |
+|----------|-------|----------|------|
+| admin | admin@husada-clinic.id | password123 | Admin |
+| direktur | direktur@husada-clinic.id | password123 | Direktur |
+| kepala_rm | kepala.rm@husada-clinic.id | password123 | Kepala Rekam Medis |
+| petugas_arsip1 | petugas1.rm@husada-clinic.id | password123 | Petugas Arsip |
+| dr_budi | dr.budi@husada-clinic.id | password123 | Nakes Internal (Dokter) |
+| dr_siti | dr.siti@husada-clinic.id | password123 | Nakes Internal (Dokter) |
+| ns_ratna | ratna.ns@husada-clinic.id | password123 | Nakes Internal (Perawat) |
+| dr_ahmad_ext | ahmad.fauzi@fkub.ac.id | password123 | Nakes Eksternal |
+
+**Catatan:** Semua password default adalah `password123`
 
 ---
 
