@@ -171,10 +171,10 @@
             <div class="card-body p-0">
                 @forelse($menungguPersetujuan as $pm)
                 <div class="d-flex align-items-center gap-3 p-3 list-item-hover">
-                    <div class="avatar avatar-md avatar-gradient flex-shrink-0">
+                    <div class="avatar avatar-md avatar-gradient shrink-0">
                         {{ strtoupper(substr($pm->peminjam->nama_lengkap, 0, 1)) }}
                     </div>
-                    <div class="flex-grow-1">
+                    <div class="grow">
                         <div class="fw-semibold" style="font-size:14px">{{ $pm->peminjam->nama_lengkap }}</div>
                         <div style="font-size:12px; color:var(--text-secondary)">
                             {{ $pm->no_peminjaman }} · {{ $pm->rekamMedis->count() }} dokumen · 
