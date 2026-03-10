@@ -1422,6 +1422,20 @@ body.medtrack-body {
 .stat-card-menunggu .stat-card-decor-circle-1,
 .stat-card-menunggu .stat-card-decor-circle-2 { background: #f59e0b; }
 
+.stat-card-total {
+    background: linear-gradient(135deg, #fff 0%, #f0f9ff 100%);
+    border-color: #bae6fd;
+}
+.stat-card-total .stat-card-decor-circle-1,
+.stat-card-total .stat-card-decor-circle-2 { background: #0ea5e9; }
+
+.stat-card-aktif {
+    background: linear-gradient(135deg, #fff 0%, #faf5ff 100%);
+    border-color: #f3e8ff;
+}
+.stat-card-aktif .stat-card-decor-circle-1,
+.stat-card-aktif .stat-card-decor-circle-2 { background: #8b5cf6; }
+
 .stat-card-dipinjam {
     background: linear-gradient(135deg, #fff 0%, #faf5ff 100%);
     border-color: #f3e8ff;
@@ -1492,6 +1506,18 @@ body.medtrack-body {
     box-shadow: 0 8px 24px rgba(16, 185, 129, 0.35);
 }
 
+.stat-card-total .stat-card-icon-main {
+    background: linear-gradient(135deg, #0ea5e9 0%, #0284c7 100%);
+    color: #fff;
+    box-shadow: 0 8px 24px rgba(14, 165, 233, 0.35);
+}
+
+.stat-card-aktif .stat-card-icon-main {
+    background: linear-gradient(135deg, #8b5cf6 0%, #7c3aed 100%);
+    color: #fff;
+    box-shadow: 0 8px 24px rgba(139, 92, 246, 0.35);
+}
+
 .stat-card:hover .stat-card-icon-main {
     transform: scale(1.08) rotate(4deg);
     box-shadow: 0 12px 32px rgba(0,0,0,0.25);
@@ -1529,6 +1555,12 @@ body.medtrack-body {
 }
 .stat-card-selesai .stat-card-number { 
     color: #059669; 
+}
+.stat-card-total .stat-card-number { 
+    color: #0284c7; 
+}
+.stat-card-aktif .stat-card-number { 
+    color: #7c3aed; 
 }
 
 .stat-card-title {

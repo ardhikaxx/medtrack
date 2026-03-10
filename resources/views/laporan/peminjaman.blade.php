@@ -13,43 +13,103 @@
         <h1 class="page-title">Laporan Peminjaman</h1>
         <p class="page-subtitle">Data peminjaman dokumen rekam medis</p>
     </div>
+    <div class="d-flex gap-2">
+        <a href="{{ route('export.peminjaman.excel', request()->query()) }}" class="btn btn-success">
+            <i class="fas fa-file-excel"></i> Export Excel
+        </a>
+        <a href="{{ route('export.peminjaman.pdf', request()->query()) }}" class="btn btn-danger">
+            <i class="fas fa-file-pdf"></i> Export PDF
+        </a>
+    </div>
 </div>
 
-<div class="row g-3 mb-4">
+<div class="row g-4 mb-4">
     <div class="col-md-3 col-sm-6">
-        <div class="stat-card">
-            <div class="stat-icon primary"><i class="fas fa-file-alt"></i></div>
-            <div>
-                <div class="stat-value">{{ $statistik['total'] }}</div>
-                <div class="stat-label">Total Peminjaman</div>
+        <div class="stat-card stat-card-total">
+            <div class="stat-card-decor-circle stat-card-decor-circle-1"></div>
+            <div class="stat-card-decor-circle stat-card-decor-circle-2"></div>
+            <div class="stat-card-inner">
+                <div class="stat-card-icon-main">
+                    <i class="fas fa-file-alt"></i>
+                </div>
+                <div class="stat-card-content">
+                    <div class="stat-card-number">{{ $statistik['total'] }}</div>
+                    <div class="stat-card-title">Total Peminjaman</div>
+                </div>
+                <div class="stat-card-info">
+                    <div class="stat-card-info-item">
+                        <i class="fas fa-archive"></i>
+                        <span>Semua transaksi</span>
+                    </div>
+                </div>
             </div>
+            <div class="stat-card-glow"></div>
         </div>
     </div>
     <div class="col-md-3 col-sm-6">
-        <div class="stat-card">
-            <div class="stat-icon warning"><i class="fas fa-clock"></i></div>
-            <div>
-                <div class="stat-value">{{ $statistik['menunggu'] }}</div>
-                <div class="stat-label">Menunggu</div>
+        <div class="stat-card stat-card-menunggu">
+            <div class="stat-card-decor-circle stat-card-decor-circle-1"></div>
+            <div class="stat-card-decor-circle stat-card-decor-circle-2"></div>
+            <div class="stat-card-inner">
+                <div class="stat-card-icon-main">
+                    <i class="fas fa-clock"></i>
+                </div>
+                <div class="stat-card-content">
+                    <div class="stat-card-number">{{ $statistik['menunggu'] }}</div>
+                    <div class="stat-card-title">Menunggu</div>
+                </div>
+                <div class="stat-card-info">
+                    <div class="stat-card-info-item">
+                        <i class="fas fa-hourglass-half"></i>
+                        <span>Perlu approval</span>
+                    </div>
+                </div>
             </div>
+            <div class="stat-card-glow"></div>
         </div>
     </div>
     <div class="col-md-3 col-sm-6">
-        <div class="stat-card">
-            <div class="stat-icon success"><i class="fas fa-check"></i></div>
-            <div>
-                <div class="stat-value">{{ $statistik['disetujui'] + $statistik['dipinjam'] }}</div>
-                <div class="stat-label">Aktif</div>
+        <div class="stat-card stat-card-aktif">
+            <div class="stat-card-decor-circle stat-card-decor-circle-1"></div>
+            <div class="stat-card-decor-circle stat-card-decor-circle-2"></div>
+            <div class="stat-card-inner">
+                <div class="stat-card-icon-main">
+                    <i class="fas fa-hand-holding-medical"></i>
+                </div>
+                <div class="stat-card-content">
+                    <div class="stat-card-number">{{ $statistik['disetujui'] + $statistik['dipinjam'] }}</div>
+                    <div class="stat-card-title">Aktif</div>
+                </div>
+                <div class="stat-card-info">
+                    <div class="stat-card-info-item">
+                        <i class="fas fa-bookmark"></i>
+                        <span>Sedang dipinjam</span>
+                    </div>
+                </div>
             </div>
+            <div class="stat-card-glow"></div>
         </div>
     </div>
     <div class="col-md-3 col-sm-6">
-        <div class="stat-card">
-            <div class="stat-icon purple"><i class="fas fa-check-circle"></i></div>
-            <div>
-                <div class="stat-value">{{ $statistik['selesai'] }}</div>
-                <div class="stat-label">Selesai</div>
+        <div class="stat-card stat-card-selesai">
+            <div class="stat-card-decor-circle stat-card-decor-circle-1"></div>
+            <div class="stat-card-decor-circle stat-card-decor-circle-2"></div>
+            <div class="stat-card-inner">
+                <div class="stat-card-icon-main">
+                    <i class="fas fa-check-circle"></i>
+                </div>
+                <div class="stat-card-content">
+                    <div class="stat-card-number">{{ $statistik['selesai'] }}</div>
+                    <div class="stat-card-title">Selesai</div>
+                </div>
+                <div class="stat-card-info">
+                    <div class="stat-card-info-item">
+                        <i class="fas fa-archive"></i>
+                        <span>Sudah dikembalikan</span>
+                    </div>
+                </div>
             </div>
+            <div class="stat-card-glow"></div>
         </div>
     </div>
 </div>
