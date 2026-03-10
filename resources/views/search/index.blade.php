@@ -16,26 +16,28 @@
 </div>
 
 <div class="card">
-    <div class="card-body">
-        <div class="row mb-4">
-            <div class="col-md-6">
-                <div class="search-box">
-                    <i class="fas fa-search"></i>
-                    <input type="text" id="global-search" class="form-control" placeholder="Ketik untuk mencari..." autofocus>
+    <div class="card-body p-0">
+        <div class="p-4">
+            <div class="row g-3">
+                <div class="col-md-6">
+                    <div class="search-box">
+                        <i class="fas fa-search"></i>
+                        <input type="text" id="global-search" class="form-control" placeholder="Ketik untuk mencari..." autofocus>
+                    </div>
                 </div>
-            </div>
-            <div class="col-md-3">
-                <select id="search-type" class="form-select">
-                    <option value="all">Semua Kategori</option>
-                    <option value="pasien">Pasien</option>
-                    <option value="rekam_medis">Rekam Medis</option>
-                    <option value="peminjaman">Peminjaman</option>
-                    <option value="pengguna">Pengguna</option>
-                </select>
+                <div class="col-md-3">
+                    <select id="search-type" class="form-select">
+                        <option value="all">Semua Kategori</option>
+                        <option value="pasien">Pasien</option>
+                        <option value="rekam_medis">Rekam Medis</option>
+                        <option value="peminjaman">Peminjaman</option>
+                        <option value="pengguna">Pengguna</option>
+                    </select>
+                </div>
             </div>
         </div>
 
-        <div id="search-results">
+        <div id="search-results" class="p-4 pt-0">
             <div class="text-center text-muted py-5">
                 <i class="fas fa-search fa-3x mb-3" style="opacity: 0.3;"></i>
                 <p class="mb-0">Masukkan kata kunci untuk memulai pencarian</p>

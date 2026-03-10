@@ -21,7 +21,7 @@
 </div>
 
 <div class="card">
-    <div class="card-body">
+    <div class="card-body p-4">
         <div id="calendar"></div>
     </div>
 </div>
