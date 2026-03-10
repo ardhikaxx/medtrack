@@ -1497,15 +1497,17 @@ body.medtrack-body {
     padding-top: 14px;
     border-top: 1px solid rgba(0,0,0,0.06);
     margin-top: auto;
+    gap: 12px;
 }
 
 .stat-card-info-item {
     display: flex;
     align-items: center;
-    gap: 6px;
+    gap: 8px;
     font-size: 12px;
     color: #6b7280;
     font-weight: 500;
+    flex-shrink: 0;
 }
 
 .stat-card-info-item i {
@@ -1516,7 +1518,14 @@ body.medtrack-body {
 .stat-card-trend-badge {
     font-size: 11px;
     font-weight: 600;
-    padding: 4px 10px;
+    padding: 5px 12px;
+    border-radius: 20px;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    white-space: nowrap;
+    margin-left: auto;
+}
     border-radius: 20px;
     display: flex;
     align-items: center;
