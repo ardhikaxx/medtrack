@@ -1331,230 +1331,223 @@ body.medtrack-body {
 /* ===== Enhanced Dashboard Stats ===== */
 .stat-card {
     background: #fff;
-    border-radius: 20px;
-    padding: 24px;
+    border-radius: 24px;
+    padding: 20px;
     transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
     position: relative;
     overflow: hidden;
     border: 1px solid rgba(0,0,0,0.04);
-    min-height: 200px;
-    display: flex;
-    flex-direction: column;
+    min-height: 220px;
 }
 
-.stat-card::before {
-    content: '';
+.stat-card-inner {
+    position: relative;
+    z-index: 2;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+}
+
+.stat-card-pasien {
+    background: linear-gradient(135deg, #fff 0%, #f5f3ff 100%);
+    border-color: #e0e7ff;
+}
+
+.stat-card-dokumen {
+    background: linear-gradient(135deg, #fff 0%, #ecfdf5 100%);
+    border-color: #d1fae5;
+}
+
+.stat-card-peminjaman {
+    background: linear-gradient(135deg, #fff 0%, #faf5ff 100%);
+    border-color: #f3e8ff;
+}
+
+.stat-card-terlambat {
+    background: linear-gradient(135deg, #fff 0%, #fef2f2 100%);
+    border-color: #fee2e2;
+}
+
+.stat-card:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 20px 40px rgba(0,0,0,0.12);
+}
+
+.stat-card-icon-bg {
+    position: absolute;
+    top: -20px;
+    right: -20px;
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    opacity: 0.15;
+    z-index: 0;
+}
+
+.stat-card-pasien .stat-card-icon-bg { background: #6366f1; }
+.stat-card-dokumen .stat-card-icon-bg { background: #10b981; }
+.stat-card-peminjaman .stat-card-icon-bg { background: #8b5cf6; }
+.stat-card-terlambat .stat-card-icon-bg { background: #ef4444; }
+
+.stat-card-icon-main {
+    width: 64px;
+    height: 64px;
+    border-radius: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 28px;
+    margin-bottom: 16px;
+    position: relative;
+    z-index: 1;
+    transition: all 0.3s ease;
+}
+
+.stat-card-pasien .stat-card-icon-main {
+    background: linear-gradient(135deg, #6366f1 0%, #8b5cf6 100%);
+    color: #fff;
+    box-shadow: 0 8px 24px rgba(99, 102, 241, 0.35);
+}
+
+.stat-card-dokumen .stat-card-icon-main {
+    background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+    color: #fff;
+    box-shadow: 0 8px 24px rgba(16, 185, 129, 0.35);
+}
+
+.stat-card-peminjaman .stat-card-icon-main {
+    background: linear-gradient(135deg, #8b5cf6 0%, #7c3aed 100%);
+    color: #fff;
+    box-shadow: 0 8px 24px rgba(139, 92, 246, 0.35);
+}
+
+.stat-card-terlambat .stat-card-icon-main {
+    background: linear-gradient(135deg, #ef4444 0%, #dc2626 100%);
+    color: #fff;
+    box-shadow: 0 8px 24px rgba(239, 68, 68, 0.35);
+}
+
+.stat-card:hover .stat-card-icon-main {
+    transform: scale(1.08) rotate(4deg);
+    box-shadow: 0 12px 32px rgba(0,0,0,0.25);
+}
+
+.stat-card-content {
+    margin-bottom: 16px;
+}
+
+.stat-card-number {
+    font-size: 42px;
+    font-weight: 800;
+    line-height: 1;
+    margin-bottom: 6px;
+    letter-spacing: -1.5px;
+}
+
+.stat-card-pasien .stat-card-number { 
+    color: #4f46e5; 
+}
+.stat-card-dokumen .stat-card-number { 
+    color: #059669; 
+}
+.stat-card-peminjaman .stat-card-number { 
+    color: #7c3aed; 
+}
+.stat-card-terlambat .stat-card-number { 
+    color: #dc2626; 
+}
+
+.stat-card-title {
+    font-size: 15px;
+    font-weight: 600;
+    color: #374151;
+}
+
+.stat-card-info {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding-top: 14px;
+    border-top: 1px solid rgba(0,0,0,0.06);
+    margin-top: auto;
+}
+
+.stat-card-info-item {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 12px;
+    color: #6b7280;
+    font-weight: 500;
+}
+
+.stat-card-info-item i {
+    font-size: 11px;
+    color: #9ca3af;
+}
+
+.stat-card-trend-badge {
+    font-size: 11px;
+    font-weight: 600;
+    padding: 4px 10px;
+    border-radius: 20px;
+    display: flex;
+    align-items: center;
+    gap: 4px;
+}
+
+.stat-card-trend-badge.up {
+    background: linear-gradient(135deg, #d1fae5 0%, #a7f3d0 100%);
+    color: #059669;
+}
+
+.stat-card-trend-badge.down {
+    background: linear-gradient(135deg, #fee2e2 0%, #fecaca 100%);
+    color: #dc2626;
+}
+
+.stat-card-trend-badge.neutral {
+    background: linear-gradient(135deg, #f3f4f6 0%, #e5e7eb 100%);
+    color: #6b7280;
+}
+
+.stat-card-trend-badge.good {
+    background: linear-gradient(135deg, #d1fae5 0%, #a7f3d0 100%);
+    color: #059669;
+}
+
+.stat-card-glow {
     position: absolute;
     top: 0;
     left: 0;
     right: 0;
     bottom: 0;
+    border-radius: 24px;
     opacity: 0;
     transition: opacity 0.4s ease;
-    z-index: 0;
+    z-index: 1;
+    pointer-events: none;
 }
 
-.stat-card-pasien::before {
-    background: linear-gradient(135deg, rgba(99, 102, 241, 0.06) 0%, rgba(139, 92, 246, 0.03) 100%);
+.stat-card-pasien .stat-card-glow {
+    background: radial-gradient(circle at 30% 30%, rgba(99, 102, 241, 0.1) 0%, transparent 60%);
 }
 
-.stat-card-dokumen::before {
-    background: linear-gradient(135deg, rgba(16, 185, 129, 0.06) 0%, rgba(5, 150, 105, 0.03) 100%);
+.stat-card-dokumen .stat-card-glow {
+    background: radial-gradient(circle at 30% 30%, rgba(16, 185, 129, 0.1) 0%, transparent 60%);
 }
 
-.stat-card-peminjaman::before {
-    background: linear-gradient(135deg, rgba(139, 92, 246, 0.06) 0%, rgba(124, 58, 237, 0.03) 100%);
+.stat-card-peminjaman .stat-card-glow {
+    background: radial-gradient(circle at 30% 30%, rgba(139, 92, 246, 0.1) 0%, transparent 60%);
 }
 
-.stat-card-terlambat::before {
-    background: linear-gradient(135deg, rgba(239, 68, 68, 0.06) 0%, rgba(220, 38, 38, 0.03) 100%);
+.stat-card-terlambat .stat-card-glow {
+    background: radial-gradient(circle at 30% 30%, rgba(239, 68, 68, 0.1) 0%, transparent 60%);
 }
 
-.stat-card::before {
+.stat-card:hover .stat-card-glow {
     opacity: 1;
 }
-
-.stat-card:hover {
-    transform: translateY(-8px);
-    box-shadow: 0 20px 40px rgba(0,0,0,0.1);
-}
-
-.stat-card:hover::before {
-    opacity: 1;
-}
-
-.stat-card-top {
-    display: flex;
-    align-items: flex-start;
-    justify-content: space-between;
-    margin-bottom: 20px;
-    position: relative;
-    z-index: 1;
-}
-
-.stat-card-icon-wrapper {
-    position: relative;
-}
-
-.stat-card-icon {
-    width: 56px;
-    height: 56px;
-    border-radius: 16px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 24px;
-    position: relative;
-    transition: all 0.3s ease;
-}
-
-.stat-card-pasien .stat-card-icon {
-    background: linear-gradient(135deg, #6366f1 0%, #8b5cf6 100%);
-    color: #fff;
-    box-shadow: 0 8px 20px rgba(99, 102, 241, 0.35);
-}
-
-.stat-card-dokumen .stat-card-icon {
-    background: linear-gradient(135deg, #10b981 0%, #059669 100%);
-    color: #fff;
-    box-shadow: 0 8px 20px rgba(16, 185, 129, 0.35);
-}
-
-.stat-card-peminjaman .stat-card-icon {
-    background: linear-gradient(135deg, #8b5cf6 0%, #7c3aed 100%);
-    color: #fff;
-    box-shadow: 0 8px 20px rgba(139, 92, 246, 0.35);
-}
-
-.stat-card-terlambat .stat-card-icon {
-    background: linear-gradient(135deg, #ef4444 0%, #dc2626 100%);
-    color: #fff;
-    box-shadow: 0 8px 20px rgba(239, 68, 68, 0.35);
-}
-
-.stat-card:hover .stat-card-icon {
-    transform: scale(1.1) rotate(3deg);
-    box-shadow: 0 12px 28px rgba(0,0,0,0.25);
-}
-
-.stat-card-trend {
-    font-size: 11px;
-    font-weight: 600;
-    padding: 5px 10px;
-    border-radius: 20px;
-    display: flex;
-    align-items: center;
-    gap: 5px;
-    white-space: nowrap;
-}
-
-.stat-card-trend.up {
-    background: linear-gradient(135deg, #d1fae5 0%, #a7f3d0 100%);
-    color: #059669;
-}
-
-.stat-card-trend.down {
-    background: linear-gradient(135deg, #fee2e2 0%, #fecaca 100%);
-    color: #dc2626;
-}
-
-.stat-card-trend.neutral {
-    background: linear-gradient(135deg, #e5e7eb 0%, #d1d5db 100%);
-    color: #6b7280;
-}
-
-.stat-card-trend.good {
-    background: linear-gradient(135deg, #d1fae5 0%, #a7f3d0 100%);
-    color: #059669;
-}
-
-.stat-card-body {
-    position: relative;
-    z-index: 1;
-    margin-bottom: auto;
-}
-
-.stat-card-value {
-    font-size: 38px;
-    font-weight: 800;
-    line-height: 1;
-    margin-bottom: 8px;
-    letter-spacing: -1px;
-}
-
-.stat-card-pasien .stat-card-value { 
-    color: #4f46e5; 
-    background: linear-gradient(135deg, #4f46e5, #7c3aed);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
-}
-.stat-card-dokumen .stat-card-value { 
-    color: #059669; 
-    background: linear-gradient(135deg, #059669, #10b981);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
-}
-.stat-card-peminjaman .stat-card-value { 
-    color: #7c3aed; 
-    background: linear-gradient(135deg, #7c3aed, #8b5cf6);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
-}
-.stat-card-terlambat .stat-card-value { 
-    color: #dc2626; 
-    background: linear-gradient(135deg, #dc2626, #ef4444);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
-}
-
-.stat-card-label {
-    font-size: 15px;
-    font-weight: 600;
-    color: #374151;
-    margin-bottom: 4px;
-}
-
-.stat-card-meta {
-    padding-top: 16px;
-    margin-top: auto;
-    position: relative;
-    z-index: 1;
-}
-
-.stat-card-meta span {
-    font-size: 12px;
-    color: #9ca3af;
-    font-weight: 500;
-    display: flex;
-    align-items: center;
-    padding: 8px 12px;
-    background: rgba(0,0,0,0.03);
-    border-radius: 8px;
-}
-
-.stat-card-meta span i {
-    color: #6b7280;
-}
-
-.stat-card-decoration {
-    position: absolute;
-    bottom: -30px;
-    right: -30px;
-    width: 100px;
-    height: 100px;
-    border-radius: 50%;
-    opacity: 0.1;
-    z-index: 0;
-}
-
-.stat-card-pasien .stat-card-decoration { background: #6366f1; }
-.stat-card-dokumen .stat-card-decoration { background: #10b981; }
-.stat-card-peminjaman .stat-card-decoration { background: #8b5cf6; }
-.stat-card-terlambat .stat-card-decoration { background: #ef4444; }
 
 /* ===== Stat Card Animations ===== */
 @keyframes slideInUp {

@@ -19,96 +19,104 @@
 <div class="row g-4 mb-4">
     <div class="col-md-3 col-sm-6">
         <a href="{{ route('pasien.index') }}" class="stat-card stat-card-pasien" style="text-decoration: none;">
-            <div class="stat-card-top">
-                <div class="stat-card-icon-wrapper">
-                    <div class="stat-card-icon">
-                        <i class="fas fa-user-injured"></i>
+            <div class="stat-card-inner">
+                <div class="stat-card-icon-bg"></div>
+                <div class="stat-card-icon-main">
+                    <i class="fas fa-user-injured"></i>
+                </div>
+                <div class="stat-card-content">
+                    <div class="stat-card-number">{{ number_format($stats['total_pasien']) }}</div>
+                    <div class="stat-card-title">Total Pasien</div>
+                </div>
+                <div class="stat-card-info">
+                    <div class="stat-card-info-item">
+                        <i class="fas fa-users"></i>
+                        <span>Pasien terdaftar</span>
+                    </div>
+                    <div class="stat-card-trend-badge up">
+                        <i class="fas fa-arrow-trend-up"></i> 12%
                     </div>
                 </div>
-                <div class="stat-card-trend up">
-                    <i class="fas fa-arrow-trend-up"></i> 12%
-                </div>
             </div>
-            <div class="stat-card-body">
-                <div class="stat-card-value">{{ number_format($stats['total_pasien']) }}</div>
-                <div class="stat-card-label">Total Pasien</div>
-            </div>
-            <div class="stat-card-meta">
-                <span><i class="fas fa-users me-2"></i>Pasien terdaftar</span>
-            </div>
-            <div class="stat-card-decoration"></div>
+            <div class="stat-card-glow"></div>
         </a>
     </div>
     <div class="col-md-3 col-sm-6">
         <a href="{{ route('rekam-medis.index') }}" class="stat-card stat-card-dokumen" style="text-decoration: none;">
-            <div class="stat-card-top">
-                <div class="stat-card-icon-wrapper">
-                    <div class="stat-card-icon">
-                        <i class="fas fa-file-medical"></i>
+            <div class="stat-card-inner">
+                <div class="stat-card-icon-bg"></div>
+                <div class="stat-card-icon-main">
+                    <i class="fas fa-file-medical"></i>
+                </div>
+                <div class="stat-card-content">
+                    <div class="stat-card-number">{{ number_format($stats['total_dokumen']) }}</div>
+                    <div class="stat-card-title">Dokumen Rekam Medis</div>
+                </div>
+                <div class="stat-card-info">
+                    <div class="stat-card-info-item">
+                        <i class="fas fa-folder-open"></i>
+                        <span>Berhasil diarsipkan</span>
+                    </div>
+                    <div class="stat-card-trend-badge up">
+                        <i class="fas fa-arrow-trend-up"></i> 8%
                     </div>
                 </div>
-                <div class="stat-card-trend up">
-                    <i class="fas fa-arrow-trend-up"></i> 8%
-                </div>
             </div>
-            <div class="stat-card-body">
-                <div class="stat-card-value">{{ number_format($stats['total_dokumen']) }}</div>
-                <div class="stat-card-label">Dokumen Rekam Medis</div>
-            </div>
-            <div class="stat-card-meta">
-                <span><i class="fas fa-folder-open me-2"></i>Berhasil diarsipkan</span>
-            </div>
-            <div class="stat-card-decoration"></div>
+            <div class="stat-card-glow"></div>
         </a>
     </div>
     <div class="col-md-3 col-sm-6">
         <a href="{{ route('peminjaman.index') }}" class="stat-card stat-card-peminjaman" style="text-decoration: none;">
-            <div class="stat-card-top">
-                <div class="stat-card-icon-wrapper">
-                    <div class="stat-card-icon">
-                        <i class="fas fa-hand-holding-medical"></i>
+            <div class="stat-card-inner">
+                <div class="stat-card-icon-bg"></div>
+                <div class="stat-card-icon-main">
+                    <i class="fas fa-hand-holding-medical"></i>
+                </div>
+                <div class="stat-card-content">
+                    <div class="stat-card-number">{{ $stats['peminjaman_aktif'] }}</div>
+                    <div class="stat-card-title">Peminjaman Aktif</div>
+                </div>
+                <div class="stat-card-info">
+                    <div class="stat-card-info-item">
+                        <i class="fas fa-clock"></i>
+                        <span>Sedang berjalan</span>
+                    </div>
+                    <div class="stat-card-trend-badge neutral">
+                        <i class="fas fa-minus"></i> Stabil
                     </div>
                 </div>
-                <div class="stat-card-trend neutral">
-                    <i class="fas fa-minus"></i> Stabil
-                </div>
             </div>
-            <div class="stat-card-body">
-                <div class="stat-card-value">{{ $stats['peminjaman_aktif'] }}</div>
-                <div class="stat-card-label">Peminjaman Aktif</div>
-            </div>
-            <div class="stat-card-meta">
-                <span><i class="fas fa-clock me-2"></i>Sedang berjalan</span>
-            </div>
-            <div class="stat-card-decoration"></div>
+            <div class="stat-card-glow"></div>
         </a>
     </div>
     <div class="col-md-3 col-sm-6">
         <a href="{{ route('peminjaman.terlambat') }}" class="stat-card stat-card-terlambat" style="text-decoration: none;">
-            <div class="stat-card-top">
-                <div class="stat-card-icon-wrapper">
-                    <div class="stat-card-icon">
-                        <i class="fas fa-exclamation-triangle"></i>
+            <div class="stat-card-inner">
+                <div class="stat-card-icon-bg"></div>
+                <div class="stat-card-icon-main">
+                    <i class="fas fa-exclamation-triangle"></i>
+                </div>
+                <div class="stat-card-content">
+                    <div class="stat-card-number">{{ $stats['terlambat'] }}</div>
+                    <div class="stat-card-title">Dokumen Terlambat</div>
+                </div>
+                <div class="stat-card-info">
+                    <div class="stat-card-info-item">
+                        <i class="fas fa-warning"></i>
+                        <span>Harus dikembalikan</span>
                     </div>
+                    @if($stats['terlambat'] > 0)
+                    <div class="stat-card-trend-badge down">
+                        <i class="fas fa-arrow-trend-down"></i> Perlu action
+                    </div>
+                    @else
+                    <div class="stat-card-trend-badge good">
+                        <i class="fas fa-check-circle"></i> Aman
+                    </div>
+                    @endif
                 </div>
-                @if($stats['terlambat'] > 0)
-                <div class="stat-card-trend down">
-                    <i class="fas fa-arrow-trend-down"></i> Perlu action
-                </div>
-                @else
-                <div class="stat-card-trend good">
-                    <i class="fas fa-check-circle"></i> Aman
-                </div>
-                @endif
             </div>
-            <div class="stat-card-body">
-                <div class="stat-card-value">{{ $stats['terlambat'] }}</div>
-                <div class="stat-card-label">Dokumen Terlambat</div>
-            </div>
-            <div class="stat-card-meta">
-                <span><i class="fas fa-warning me-2"></i>Harus dikembalikan</span>
-            </div>
-            <div class="stat-card-decoration"></div>
+            <div class="stat-card-glow"></div>
         </a>
     </div>
 </div>
