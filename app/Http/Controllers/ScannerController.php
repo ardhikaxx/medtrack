@@ -42,7 +42,7 @@ class ScannerController extends Controller
 
         $rekamMedis = RekamMedis::where('no_rekam_medis', 'like', "%{$code}%")
             ->orWhere('kode_dokumen', 'like', "%{$code}%")
-            ->orWhere('nama_pasien', 'like', "%{$code}%")
+            ->with('pasien')
             ->first();
 
         if ($rekamMedis) {
@@ -51,7 +51,7 @@ class ScannerController extends Controller
                 'data' => [
                     'id' => $rekamMedis->id,
                     'no_rekam_medis' => $rekamMedis->no_rekam_medis,
-                    'nama_pasien' => $rekamMedis->nama_pasien,
+                    'nama_pasien' => $rekamMedis->pasien?->nama ?? '-',
                     'status_dokumen' => $rekamMedis->status_dokumen,
                 ]
             ]);
