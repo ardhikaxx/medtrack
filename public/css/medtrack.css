@@ -2291,3 +2291,89 @@ body.medtrack-body {
     color: #fff;
     transform: translateX(4px);
 }
+
+/* ===== Label Print Preview ===== */
+.qrcode-display {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+    background: #f9fafb;
+    border-radius: 12px;
+}
+
+.label-print-preview {
+    border: 2px dashed #d1d5db;
+    border-radius: 12px;
+    padding: 20px;
+    background: #fff;
+    max-width: 400px;
+    margin: 0 auto;
+}
+
+.label-print-preview .label-content {
+    display: flex;
+    gap: 15px;
+    align-items: center;
+}
+
+.label-print-preview .label-qr img {
+    width: 80px;
+    height: 80px;
+}
+
+.label-print-preview .label-info {
+    flex: 1;
+}
+
+.label-print-preview .label-title {
+    font-size: 10px;
+    font-weight: 600;
+    color: #1a6f8a;
+    margin-bottom: 4px;
+}
+
+.label-print-preview .label-code {
+    font-size: 14px;
+    font-weight: 700;
+    color: #1f2937;
+    margin-bottom: 2px;
+}
+
+.label-print-preview .label-patient {
+    font-size: 12px;
+    font-weight: 600;
+    color: #374151;
+    margin-bottom: 2px;
+}
+
+.label-print-preview .label-noRM {
+    font-size: 10px;
+    color: #6b7280;
+}
+
+.label-print-preview .label-date {
+    font-size: 10px;
+    color: #9ca3af;
+}
+
+/* Print Styles */
+@media print {
+    body * {
+        visibility: hidden;
+    }
+    #label-preview, #label-preview * {
+        visibility: visible;
+    }
+    #label-preview {
+        position: absolute;
+        left: 0;
+        top: 0;
+        width: 100%;
+        border: none;
+    }
+    .label-print-preview {
+        border: none;
+        max-width: 100%;
+    }
+}

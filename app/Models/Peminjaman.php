@@ -15,6 +15,12 @@ class Peminjaman extends Model
 
     protected $table = 'peminjamans';
 
+    public static function getBulanIndo($bulan)
+    {
+        $bulanIndo = ['', 'Januari', 'Februari', 'Maret', 'April', 'Mei', 'Juni', 'Juli', 'Agustus', 'September', 'Oktober', 'November', 'Desember'];
+        return $bulanIndo[$bulan] ?? '';
+    }
+
     protected $fillable = [
         'no_peminjaman',
         'peminjam_id',

@@ -14,12 +14,56 @@
         <p class="page-subtitle">Kode: {{ $rekamMedis->kode_dokumen }}</p>
     </div>
     <div class="d-flex gap-2">
+        <button type="button" class="btn btn-primary" onclick="printLabel()">
+            <i class="fas fa-print"></i> Print Label
+        </button>
         <a href="{{ route('rekam-medis.index') }}" class="btn btn-secondary">
             <i class="fas fa-arrow-left"></i> Kembali
         </a>
         <a href="{{ route('rekam-medis.edit', $rekamMedis->id) }}" class="btn btn-primary">
             <i class="fas fa-edit"></i> Edit
         </a>
+    </div>
+</div>
+
+<div class="row g-4 mb-4">
+    <div class="col-md-4">
+        <div class="card card-modern text-center">
+            <div class="card-header-custom">
+                <div class="card-header-title">QR Code</div>
+            </div>
+            <div class="card-body">
+                <div class="qrcode-display mb-3">
+                    <img src="data:image/png;base64,{{ base64_encode(QrCode::format('png')->size(150)->generate($rekamMedis->getQrCodeUrl())) }}" 
+                         alt="QR Code" class="img-fluid" style="max-width: 150px;">
+                </div>
+                <div class="text-muted" style="font-size: 11px;">Scan untuk lihat detail</div>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-8">
+        <div class="card card-modern">
+            <div class="card-header-custom">
+                <div class="card-header-title">Preview Label</div>
+            </div>
+            <div class="card-body">
+                <div id="label-preview" class="label-print-preview">
+                    <div class="label-content">
+                        <div class="label-qr">
+                            <img src="data:image/png;base64,{{ base64_encode(QrCode::format('png')->size(80)->generate($rekamMedis->getQrCodeUrl())) }}" 
+                                 alt="QR" style="width: 80px; height: 80px;">
+                        </div>
+                        <div class="label-info">
+                            <div class="label-title">Klinik Pratama Rawat Inap Husada</div>
+                            <div class="label-code">{{ $rekamMedis->kode_dokumen }}</div>
+                            <div class="label-patient">{{ $rekamMedis->pasien->nama_lengkap ?? '-' }}</div>
+                            <div class="label-noRM">RM: {{ $rekamMedis->no_rekam_medis }}</div>
+                            <div class="label-date">{{ $rekamMedis->tanggal_kunjungan?->format('d/m/Y') }}</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
 </div>
 
@@ -211,4 +255,48 @@
     </div>
 </div>
 @endif
+
+@push('scripts')
+<script>
+function printLabel() {
+    const printContent = document.getElementById('label-preview').innerHTML;
+    const printWindow = window.open('', '_blank', 'width=400,height=300');
+    
+    printWindow.document.write(`
+        <!DOCTYPE html>
+        <html>
+        <head>
+            <title>Print Label RM</title>
+            <style>
+                body { margin: 0; padding: 10px; font-family: Arial, sans-serif; }
+                .label-content { display: flex; gap: 15px; align-items: center; }
+                .label-qr img { width: 80px; height: 80px; }
+                .label-info { flex: 1; }
+                .label-title { font-size: 10px; font-weight: 600; color: #1a6f8a; margin-bottom: 4px; }
+                .label-code { font-size: 14px; font-weight: 700; color: #1f2937; margin-bottom: 2px; }
+                .label-patient { font-size: 12px; font-weight: 600; color: #374151; margin-bottom: 2px; }
+                .label-noRM { font-size: 10px; color: #6b7280; }
+                .label-date { font-size: 10px; color: #9ca3af; }
+                @media print {
+                    body { padding: 0; }
+                }
+            </style>
+        </head>
+        <body>
+            <div class="label-content">
+                ${printContent}
+            </div>
+        </body>
+        </html>
+    `);
+    
+    printWindow.document.close();
+    printWindow.focus();
+    setTimeout(() => {
+        printWindow.print();
+        printWindow.close();
+    }, 250);
+}
+</script>
+@endpush
 @endsection

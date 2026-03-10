@@ -5,8 +5,10 @@ namespace App\Http\Controllers;
 use App\Models\Pasien;
 use App\Models\RekamMedis;
 use App\Models\Peminjaman;
+use App\Models\Pengembalian;
 use App\Models\AuditLog;
 use Illuminate\Http\Request;
+use Carbon\Carbon;
 
 class DashboardController extends Controller
 {
@@ -39,7 +41,50 @@ class DashboardController extends Controller
             ->take(10)
             ->get();
 
-        return view('dashboard.index', compact('stats', 'menungguPersetujuan', 'terlambat', 'aktivitasTerkini'));
+        $chartData = $this->getChartData();
+
+        return view('dashboard.index', compact('stats', 'menungguPersetujuan', 'terlambat', 'aktivitasTerkini', 'chartData'));
+    }
+
+    private function getChartData()
+    {
+        $tahun = now()->year;
+        
+        $bulanIndonesia = ['', 'Jan', 'Feb', 'Mar', 'Apr', 'Mei', 'Jun', 'Jul', 'Ags', 'Sep', 'Okt', 'Nov', 'Des'];
+
+        $peminjamanPerBulan = Peminjaman::selectRaw('MONTH(tanggal_pinjam) as bulan, COUNT(*) as total')
+            ->whereYear('tanggal_pinjam', $tahun)
+            ->groupBy('bulan')
+            ->pluck('total', 'bulan')
+            ->toArray();
+
+        $pengembalianPerBulan = Pengembalian::selectRaw('MONTH(tanggal_kembali) as bulan, COUNT(*) as total')
+            ->whereYear('tanggal_kembali', $tahun)
+            ->groupBy('bulan')
+            ->pluck('total', 'bulan')
+            ->toArray();
+
+        $labels = [];
+        $peminjamanData = [];
+        $pengembalianData = [];
+
+        for ($i = 1; $i <= 12; $i++) {
+            $labels[] = $bulanIndonesia[$i];
+            $peminjamanData[] = $peminjamanPerBulan[$i] ?? 0;
+            $pengembalianData[] = $pengembalianPerBulan[$i] ?? 0;
+        }
+
+        $statusPeminjaman = Peminjaman::selectRaw('status_peminjaman, COUNT(*) as total')
+            ->groupBy('status_peminjaman')
+            ->pluck('total', 'status_peminjaman')
+            ->toArray();
+
+        return [
+            'labels' => $labels,
+            'peminjaman' => $peminjamanData,
+            'pengembalian' => $pengembalianData,
+            'status_peminjaman' => $statusPeminjaman,
+        ];
     }
 
     public function statistik(Request $request)

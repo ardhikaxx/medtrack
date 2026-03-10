@@ -125,6 +125,36 @@
     </div>
 </div>
 
+<div class="row g-4 mb-4">
+    <div class="col-lg-8">
+        <div class="card card-modern">
+            <div class="card-header-custom">
+                <div class="card-header-title">
+                    <span class="header-icon"><i class="fas fa-chart-line"></i></span>
+                    Grafik Peminjaman & Pengembalian
+                    <span class="text-muted ms-2" style="font-size:12px">(Tahun {{ now()->year }})</span>
+                </div>
+            </div>
+            <div class="card-body">
+                <canvas id="chartPeminjamanPengembalian" height="120"></canvas>
+            </div>
+        </div>
+    </div>
+    <div class="col-lg-4">
+        <div class="card card-modern">
+            <div class="card-header-custom">
+                <div class="card-header-title">
+                    <span class="header-icon"><i class="fas fa-chart-pie"></i></span>
+                    Status Peminjaman
+                </div>
+            </div>
+            <div class="card-body">
+                <canvas id="chartStatusPeminjaman"></canvas>
+            </div>
+        </div>
+    </div>
+</div>
+
 <div class="row g-4">
     <div class="col-lg-8">
         <div class="card card-modern">
@@ -226,4 +256,118 @@
         </div>
     </div>
 </div>
+
+@push('scripts')
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const chartLabels = @json($chartData['labels']);
+        const peminjamanData = @json($chartData['peminjaman']);
+        const pengembalianData = @json($chartData['pengembalian']);
+        
+        const ctxLine = document.getElementById('chartPeminjamanPengembalian').getContext('2d');
+        new Chart(ctxLine, {
+            type: 'line',
+            data: {
+                labels: chartLabels,
+                datasets: [
+                    {
+                        label: 'Peminjaman',
+                        data: peminjamanData,
+                        borderColor: '#8b5cf6',
+                        backgroundColor: 'rgba(139, 92, 246, 0.1)',
+                        fill: true,
+                        tension: 0.4,
+                        pointBackgroundColor: '#8b5cf6',
+                        pointBorderColor: '#fff',
+                        pointBorderWidth: 2,
+                        pointRadius: 4
+                    },
+                    {
+                        label: 'Pengembalian',
+                        data: pengembalianData,
+                        borderColor: '#10b981',
+                        backgroundColor: 'rgba(16, 185, 129, 0.1)',
+                        fill: true,
+                        tension: 0.4,
+                        pointBackgroundColor: '#10b981',
+                        pointBorderColor: '#fff',
+                        pointBorderWidth: 2,
+                        pointRadius: 4
+                    }
+                ]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: {
+                    legend: {
+                        position: 'top',
+                        labels: {
+                            usePointStyle: true,
+                            padding: 20
+                        }
+                    }
+                },
+                scales: {
+                    y: {
+                        beginAtZero: true,
+                        ticks: {
+                            stepSize: 1
+                        },
+                        grid: {
+                            color: 'rgba(0,0,0,0.05)'
+                        }
+                    },
+                    x: {
+                        grid: {
+                            display: false
+                        }
+                    }
+                }
+            }
+        });
+
+        const statusData = @json($chartData['status_peminjaman']);
+        const statusLabels = {
+            'menunggu': 'Menunggu',
+            'disetujui': 'Disetujui',
+            'dipinjam': 'Dipinjam',
+            'selesai': 'Selesai',
+            'ditolak': 'Ditolak',
+            'terlambat': 'Terlambat',
+            'dibatalkan': 'Dibatalkan'
+        };
+        
+        const colors = ['#f59e0b', '#3b82f6', '#8b5cf6', '#10b981', '#ef4444', '#dc2626', '#6b7280'];
+        
+        const ctxPie = document.getElementById('chartStatusPeminjaman').getContext('2d');
+        new Chart(ctxPie, {
+            type: 'doughnut',
+            data: {
+                labels: Object.keys(statusData).map(k => statusLabels[k] || k),
+                datasets: [{
+                    data: Object.values(statusData),
+                    backgroundColor: colors.slice(0, Object.keys(statusData).length),
+                    borderWidth: 0,
+                    hoverOffset: 4
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: {
+                    legend: {
+                        position: 'bottom',
+                        labels: {
+                            usePointStyle: true,
+                            padding: 15
+                        }
+                    }
+                },
+                cutout: '65%'
+            }
+        });
+    });
+</script>
+@endpush
 @endsection

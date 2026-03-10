@@ -12,6 +12,22 @@ class RekamMedis extends Model
 {
     use HasFactory, SoftDeletes;
 
+    public function getQrCodeData(): string
+    {
+        return json_encode([
+            'kode' => $this->kode_dokumen,
+            'no_rm' => $this->no_rekam_medis,
+            'pasien' => $this->pasien->nama ?? '-',
+            'tgl_kunjungan' => $this->tanggal_kunjungan?->format('d/m/Y'),
+            'status' => $this->status_dokumen,
+        ]);
+    }
+
+    public function getQrCodeUrl(): string
+    {
+        return route('rekam-medis.show', $this->id);
+    }
+
     protected $fillable = [
         'pasien_id',
         'kode_dokumen',

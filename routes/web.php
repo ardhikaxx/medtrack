@@ -12,6 +12,7 @@ use App\Http\Controllers\UnitController;
 use App\Http\Controllers\LaporanController;
 use App\Http\Controllers\Api\WilayahController;
 use App\Http\Controllers\ProfilController;
+use App\Http\Controllers\ExportController;
 
 Route::get('/api/wilayah/provinces', [WilayahController::class, 'provinces']);
 Route::get('/api/wilayah/regencies/{provinceId}', [WilayahController::class, 'regencies']);
@@ -74,6 +75,14 @@ Route::middleware(['auth'])->group(function () {
         Route::get('/terlambat', [LaporanController::class, 'terlambat'])->name('terlambat');
         Route::get('/statistik-dokumen', [LaporanController::class, 'statistikDokumen'])->name('statistik-dokumen');
         Route::get('/rekap-bulanan', [LaporanController::class, 'rekapBulanan'])->name('rekap-bulanan');
+    });
+
+    Route::prefix('export')->name('export.')->group(function () {
+        Route::get('/peminjaman/excel', [ExportController::class, 'peminjamanExcel'])->name('peminjaman.excel');
+        Route::get('/peminjaman/pdf', [ExportController::class, 'peminjamanPdf'])->name('peminjaman.pdf');
+        Route::get('/pengembalian/excel', [ExportController::class, 'pengembalianExcel'])->name('pengembalian.excel');
+        Route::get('/pengembalian/pdf', [ExportController::class, 'pengembalianPdf'])->name('pengembalian.pdf');
+        Route::get('/rekap-bulanan/pdf', [ExportController::class, 'rekapBulanan'])->name('rekap-bulanan.pdf');
     });
 
     Route::prefix('pengguna')->name('pengguna.')->group(function () {
