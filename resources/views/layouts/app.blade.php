@@ -85,9 +85,9 @@
                         <li><a class="dropdown-item" href="{{ route('profil.index') }}"><i class="fas fa-user me-2"></i>Profil Saya</a></li>
                         <li><hr class="dropdown-divider"></li>
                         <li>
-                            <form action="{{ route('logout') }}" method="POST">
+                            <form action="{{ route('logout') }}" method="POST" id="logout-form">
                                 @csrf
-                                <button class="dropdown-item text-danger"><i class="fas fa-sign-out-alt me-2"></i>Keluar</button>
+                                <button type="submit" class="dropdown-item text-danger" onclick="confirmLogout(event)"><i class="fas fa-sign-out-alt me-2"></i>Keluar</button>
                             </form>
                         </li>
                     </ul>
@@ -113,6 +113,96 @@
     <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script src="{{ asset('js/medtrack.js') }}"></script>
+
+    <script>
+        // Logout Confirmation
+        function confirmLogout(e) {
+            e.preventDefault();
+            Swal.fire({
+                title: 'Konfirmasi Logout',
+                text: 'Apakah Anda yakin ingin keluar dari sistem?',
+                icon: 'question',
+                showCancelButton: true,
+                confirmButtonColor: '#dc2626',
+                cancelButtonColor: '#6b7280',
+                confirmButtonText: '<i class="fas fa-sign-out-alt"></i> Ya, Keluar',
+                cancelButtonText: '<i class="fas fa-times"></i> Batal',
+                reverseButtons: true
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    document.getElementById('logout-form').submit();
+                }
+            });
+        }
+
+        // Delete Confirmation
+        function confirmDelete(formId, itemName = 'item ini') {
+            event.preventDefault();
+            Swal.fire({
+                title: 'Konfirmasi Hapus',
+                text: 'Apakah Anda yakin ingin menghapus ' + itemName + '? Data yang dihapus tidak dapat dikembalikan!',
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#dc2626',
+                cancelButtonColor: '#6b7280',
+                confirmButtonText: '<i class="fas fa-trash"></i> Ya, Hapus',
+                cancelButtonText: '<i class="fas fa-times"></i> Batal',
+                reverseButtons: true
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    document.getElementById(formId).submit();
+                }
+            });
+        }
+
+        // Delete with custom message
+        function confirmDeleteMsg(itemName = 'item ini') {
+            event.preventDefault();
+            Swal.fire({
+                title: 'Konfirmasi Hapus',
+                text: 'Apakah Anda yakin ingin menghapus ' + itemName + '? Data yang dihapus tidak dapat dikembalikan!',
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#dc2626',
+                cancelButtonColor: '#6b7280',
+                confirmButtonText: '<i class="fas fa-trash"></i> Ya, Hapus',
+                cancelButtonText: '<i class="fas fa-times"></i> Batal',
+                reverseButtons: true
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    event.target.closest('form').submit();
+                }
+            });
+        }
+
+        // Show success toast
+        function showSuccess(message) {
+            Swal.fire({
+                icon: 'success',
+                title: 'Berhasil!',
+                text: message,
+                toast: true,
+                position: 'top-end',
+                showConfirmButton: false,
+                timer: 3000,
+                timerProgressBar: true
+            });
+        }
+
+        // Show error toast
+        function showError(message) {
+            Swal.fire({
+                icon: 'error',
+                title: 'Gagal!',
+                text: message,
+                toast: true,
+                position: 'top-end',
+                showConfirmButton: false,
+                timer: 4000,
+                timerProgressBar: true
+            });
+        }
+    </script>
 
     @if(session('success'))
     <script>

@@ -67,11 +67,11 @@
                                     data-bs-toggle="modal" data-bs-target="#modalEdit{{ $unit->id }}">
                                     <i class="fas fa-edit"></i>
                                 </button>
-                                <form action="{{ route('unit.destroy', $unit) }}" method="POST" class="d-inline">
+                                <form action="{{ route('unit.destroy', $unit) }}" method="POST" class="d-inline" id="delete-unit-{{ $unit->id }}">
                                     @csrf
                                     @method('DELETE')
-                                    <button type="submit" class="btn btn-sm btn-icon btn-outline-danger" title="Hapus"
-                                        onclick="return confirm('Yakin hapus unit {{ $unit->nama_unit }}?')">
+                                    <button type="button" class="btn btn-sm btn-icon btn-outline-danger" title="Hapus"
+                                        onclick="confirmDeleteMsg('unit {{ $unit->nama_unit }}')">
                                         <i class="fas fa-trash"></i>
                                     </button>
                                 </form>
