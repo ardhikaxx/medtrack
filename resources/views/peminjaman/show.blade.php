@@ -76,14 +76,14 @@
                 <div class="card-header-title">Aksi</div>
             </div>
             <div class="card-body">
-                <form action="{{ route('peminjaman.setujui', $peminjaman) }}" method="POST" class="mb-2">
+                <form action="{{ route('peminjaman.setujui', $peminjaman) }}" method="POST" class="mb-2" id="form-setuju-{{ $peminjaman->id }}">
                     @csrf
-                    <button type="submit" class="btn btn-success w-100"><i class="fas fa-check"></i> Setuju</button>
+                    <button type="button" class="btn btn-success w-100" onclick="confirmSetuju({{ $peminjaman->id }})"><i class="fas fa-check"></i> Setuju</button>
                 </form>
                 <form action="{{ route('peminjaman.tolak', $peminjaman) }}" method="POST" class="mb-2">
                     @csrf
                     <input type="text" name="alasan_penolakan" class="form-control mb-2" placeholder="Alasan penolakan" required>
-                    <button type="submit" class="btn btn-danger w-100"><i class="fas fa-times"></i> Tolak</button>
+                    <button type="button" class="btn btn-danger w-100" onclick="confirmTolak({{ $peminjaman->id }})"><i class="fas fa-times"></i> Tolak</button>
                 </form>
             </div>
         </div>
@@ -95,9 +95,9 @@
                 <div class="card-header-title">Proses</div>
             </div>
             <div class="card-body">
-                <form action="{{ route('peminjaman.proses', $peminjaman) }}" method="POST">
+                <form action="{{ route('peminjaman.proses', $peminjaman) }}" method="POST" id="form-proses-{{ $peminjaman->id }}">
                     @csrf
-                    <button type="submit" class="btn-primary-custom w-100">
+                    <button type="button" class="btn-primary-custom w-100" onclick="confirmProses({{ $peminjaman->id }})">
                         <i class="fas fa-hand-holding-medical"></i> Proses Penyerahan
                     </button>
                 </form>

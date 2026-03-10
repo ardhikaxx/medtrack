@@ -202,6 +202,72 @@
                 timerProgressBar: true
             });
         }
+
+        // Confirm Peminjaman Setuju
+        function confirmSetuju(id) {
+            Swal.fire({
+                title: 'Konfirmasi Persetujuan',
+                text: 'Apakah Anda yakin ingin menyetujui peminjaman ini?',
+                icon: 'question',
+                showCancelButton: true,
+                confirmButtonColor: '#10b981',
+                cancelButtonColor: '#6b7280',
+                confirmButtonText: '<i class="fas fa-check"></i> Ya, Setuju',
+                cancelButtonText: '<i class="fas fa-times"></i> Batal',
+                reverseButtons: true
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    document.getElementById('form-setuju-' + id).submit();
+                }
+            });
+        }
+
+        // Confirm Peminjaman Tolak
+        function confirmTolak(id) {
+            const alasan = document.querySelector('input[name="alasan_penolakan"]').value;
+            if (!alasan) {
+                Swal.fire({
+                    icon: 'warning',
+                    title: 'Perhatian!',
+                    text: 'Silakan isi alasan penolakan terlebih dahulu!'
+                });
+                return;
+            }
+            Swal.fire({
+                title: 'Konfirmasi Penolakan',
+                text: 'Apakah Anda yakin ingin menolak peminjaman ini?',
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#dc2626',
+                cancelButtonColor: '#6b7280',
+                confirmButtonText: '<i class="fas fa-times"></i> Ya, Tolak',
+                cancelButtonText: '<i class="fas fa-times"></i> Batal',
+                reverseButtons: true
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    event.target.closest('form').submit();
+                }
+            });
+        }
+
+        // Confirm Peminjaman Proses
+        function confirmProses(id) {
+            Swal.fire({
+                title: 'Konfirmasi Proses Penyerahan',
+                text: 'Apakah Anda yakin ingin memproses penyerahan dokumen?',
+                icon: 'question',
+                showCancelButton: true,
+                confirmButtonColor: '#1a6f8a',
+                cancelButtonColor: '#6b7280',
+                confirmButtonText: '<i class="fas fa-check"></i> Ya, Proses',
+                cancelButtonText: '<i class="fas fa-times"></i> Batal',
+                reverseButtons: true
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    document.getElementById('form-proses-' + id).submit();
+                }
+            });
+        }
     </script>
 
     @if(session('success'))
