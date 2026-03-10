@@ -66,10 +66,10 @@ class PeminjamanExport implements FromCollection, WithHeadings, WithMapping
             $peminjaman->peminjam->nama_lengkap ?? '-',
             $peminjaman->rekamMedis->count(),
             $peminjaman->tujuan_peminjaman,
-            $peminjaman->tanggal_pinjam->format('d/m/Y'),
-            $peminjaman->tanggal_kembali->format('d/m/Y'),
+            $peminjaman->tanggal_pinjam?->format('d/m/Y') ?? '-',
+            $peminjaman->tanggal_kembali_rencana?->format('d/m/Y') ?? '-',
             $statusMap[$peminjaman->status_peminjaman] ?? $peminjaman->status_peminjaman,
-            $peminjaman->tanggal_kembali_aktual ? $peminjaman->tanggal_kembali_aktual->format('d/m/Y') : '-',
+            $peminjaman->tanggal_kembali_aktual?->format('d/m/Y') ?? '-',
         ];
     }
 }

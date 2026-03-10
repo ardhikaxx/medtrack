@@ -50,7 +50,7 @@ class PengembalianExport implements FromCollection, WithHeadings, WithMapping
             $pengembalian->peminjaman->no_peminjaman ?? '-',
             $pengembalian->peminjaman->peminjam->nama_lengkap ?? '-',
             $pengembalian->peminjaman->rekamMedis->count() ?? 0,
-            $pengembalian->tanggal_kembali->format('d/m/Y'),
+            $pengembalian->tanggal_pengembalian?->format('d/m/Y') ?? '-',
             $pengembalian->petugas->nama_lengkap ?? '-',
             $pengembalian->kondisi_dokumen ?? '-',
             $pengembalian->keterangan ?? '-',
