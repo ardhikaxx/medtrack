@@ -107,52 +107,76 @@
 
 <div class="row g-4">
     <div class="col-md-6">
-        <div class="card">
-            <div class="card-header-custom">
-                <div class="card-header-title">Laporan Peminjaman</div>
+        <a href="{{ route('laporan.peminjaman') }}" class="menu-card menu-card-peminjaman" style="text-decoration: none;">
+            <div class="menu-card-decoration">
+                <div class="menu-card-decor-1"></div>
+                <div class="menu-card-decor-2"></div>
             </div>
-            <div class="card-body text-center py-5">
-                <a href="{{ route('laporan.peminjaman') }}" class="btn-primary-custom">
-                    <i class="fas fa-file-alt"></i> Lihat Laporan
-                </a>
+            <div class="menu-card-icon">
+                <i class="fas fa-file-signature"></i>
             </div>
-        </div>
+            <div class="menu-card-content">
+                <h3 class="menu-card-title">Laporan Peminjaman</h3>
+                <p class="menu-card-desc">Lihat data lengkap peminjaman dokumen rekam medis</p>
+            </div>
+            <div class="menu-card-arrow">
+                <i class="fas fa-arrow-right"></i>
+            </div>
+        </a>
     </div>
     <div class="col-md-6">
-        <div class="card">
-            <div class="card-header-custom">
-                <div class="card-header-title">Laporan Pengembalian</div>
+        <a href="{{ route('laporan.pengembalian') }}" class="menu-card menu-card-pengembalian" style="text-decoration: none;">
+            <div class="menu-card-decoration">
+                <div class="menu-card-decor-1"></div>
+                <div class="menu-card-decor-2"></div>
             </div>
-            <div class="card-body text-center py-5">
-                <a href="{{ route('laporan.pengembalian') }}" class="btn-primary-custom">
-                    <i class="fas fa-file-alt"></i> Lihat Laporan
-                </a>
+            <div class="menu-card-icon">
+                <i class="fas fa-file-contract"></i>
             </div>
-        </div>
+            <div class="menu-card-content">
+                <h3 class="menu-card-title">Laporan Pengembalian</h3>
+                <p class="menu-card-desc">Riwayat pengembalian dokumen RM</p>
+            </div>
+            <div class="menu-card-arrow">
+                <i class="fas fa-arrow-right"></i>
+            </div>
+        </a>
     </div>
     <div class="col-md-6">
-        <div class="card">
-            <div class="card-header-custom">
-                <div class="card-header-title">Dokumen Terlambat</div>
+        <a href="{{ route('laporan.terlambat') }}" class="menu-card menu-card-terlambat" style="text-decoration: none;">
+            <div class="menu-card-decoration">
+                <div class="menu-card-decor-1"></div>
+                <div class="menu-card-decor-2"></div>
             </div>
-            <div class="card-body text-center py-5">
-                <a href="{{ route('laporan.terlambat') }}" class="btn-primary-custom">
-                    <i class="fas fa-exclamation-triangle"></i> Lihat Detail
-                </a>
+            <div class="menu-card-icon">
+                <i class="fas fa-exclamation-triangle"></i>
             </div>
-        </div>
+            <div class="menu-card-content">
+                <h3 class="menu-card-title">Dokumen Terlambat</h3>
+                <p class="menu-card-desc">Daftar dokumen yang melebihi batas waktu</p>
+            </div>
+            <div class="menu-card-arrow">
+                <i class="fas fa-arrow-right"></i>
+            </div>
+        </a>
     </div>
     <div class="col-md-6">
-        <div class="card">
-            <div class="card-header-custom">
-                <div class="card-header-title">Rekap Bulanan</div>
+        <a href="{{ route('laporan.rekap-bulanan') }}" class="menu-card menu-card-rekap" style="text-decoration: none;">
+            <div class="menu-card-decoration">
+                <div class="menu-card-decor-1"></div>
+                <div class="menu-card-decor-2"></div>
             </div>
-            <div class="card-body text-center py-5">
-                <a href="{{ route('laporan.rekap-bulanan') }}" class="btn-primary-custom">
-                    <i class="fas fa-calendar"></i> Lihat Rekap
-                </a>
+            <div class="menu-card-icon">
+                <i class="fas fa-calendar-check"></i>
             </div>
-        </div>
+            <div class="menu-card-content">
+                <h3 class="menu-card-title">Rekap Bulanan</h3>
+                <p class="menu-card-desc">Ringkasan aktivitas bulanan</p>
+            </div>
+            <div class="menu-card-arrow">
+                <i class="fas fa-arrow-right"></i>
+            </div>
+        </a>
     </div>
 </div>
 @endsection
