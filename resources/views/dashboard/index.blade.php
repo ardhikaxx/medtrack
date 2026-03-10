@@ -18,41 +18,87 @@
 
 <div class="row g-4 mb-4">
     <div class="col-md-3 col-sm-6">
-        <a href="{{ route('pasien.index') }}" class="stat-card" style="text-decoration: none;">
-            <div class="stat-card-icon primary"><i class="fas fa-user-injured"></i></div>
+        <a href="{{ route('pasien.index') }}" class="stat-card stat-card-pasien" style="text-decoration: none;">
+            <div class="stat-card-header">
+                <div class="stat-card-icon">
+                    <i class="fas fa-user-injured"></i>
+                </div>
+                <div class="stat-card-trend up">
+                    <i class="fas fa-arrow-up"></i> 12%
+                </div>
+            </div>
             <div class="stat-card-value">{{ number_format($stats['total_pasien']) }}</div>
             <div class="stat-card-label">Total Pasien</div>
+            <div class="stat-card-footer">
+                <span><i class="fas fa-calendar-alt me-1"></i>Bulan ini</span>
+            </div>
         </a>
     </div>
     <div class="col-md-3 col-sm-6">
-        <a href="{{ route('rekam-medis.index') }}" class="stat-card" style="text-decoration: none;">
-            <div class="stat-card-icon success"><i class="fas fa-file-medical"></i></div>
+        <a href="{{ route('rekam-medis.index') }}" class="stat-card stat-card-dokumen" style="text-decoration: none;">
+            <div class="stat-card-header">
+                <div class="stat-card-icon">
+                    <i class="fas fa-file-medical"></i>
+                </div>
+                <div class="stat-card-trend up">
+                    <i class="fas fa-arrow-up"></i> 8%
+                </div>
+            </div>
             <div class="stat-card-value">{{ number_format($stats['total_dokumen']) }}</div>
             <div class="stat-card-label">Total Dokumen RM</div>
+            <div class="stat-card-footer">
+                <span><i class="fas fa-folder-open me-1"></i>Aktif disimpan</span>
+            </div>
         </a>
     </div>
     <div class="col-md-3 col-sm-6">
-        <a href="{{ route('peminjaman.index') }}" class="stat-card" style="text-decoration: none;">
-            <div class="stat-card-icon" style="background: linear-gradient(135deg, #f3eaff 0%, #e8d4f7 100%); color: #8e44ad;"><i class="fas fa-hand-holding-medical"></i></div>
+        <a href="{{ route('peminjaman.index') }}" class="stat-card stat-card-peminjaman" style="text-decoration: none;">
+            <div class="stat-card-header">
+                <div class="stat-card-icon">
+                    <i class="fas fa-hand-holding-medical"></i>
+                </div>
+                <div class="stat-card-trend neutral">
+                    <i class="fas fa-minus"></i> 0%
+                </div>
+            </div>
             <div class="stat-card-value">{{ $stats['peminjaman_aktif'] }}</div>
             <div class="stat-card-label">Peminjaman Aktif</div>
+            <div class="stat-card-footer">
+                <span><i class="fas fa-clock me-1"></i>Sedang dipinjam</span>
+            </div>
         </a>
     </div>
     <div class="col-md-3 col-sm-6">
-        <a href="{{ route('peminjaman.terlambat') }}" class="stat-card" style="text-decoration: none;">
-            <div class="stat-card-icon danger"><i class="fas fa-exclamation-circle"></i></div>
+        <a href="{{ route('peminjaman.terlambat') }}" class="stat-card stat-card-terlambat" style="text-decoration: none;">
+            <div class="stat-card-header">
+                <div class="stat-card-icon">
+                    <i class="fas fa-exclamation-circle"></i>
+                </div>
+                @if($stats['terlambat'] > 0)
+                <div class="stat-card-trend down">
+                    <i class="fas fa-arrow-down"></i> 5%
+                </div>
+                @else
+                <div class="stat-card-trend good">
+                    <i class="fas fa-check"></i> 0
+                </div>
+                @endif
+            </div>
             <div class="stat-card-value">{{ $stats['terlambat'] }}</div>
             <div class="stat-card-label">Dokumen Terlambat</div>
+            <div class="stat-card-footer">
+                <span><i class="fas fa-warning me-1"></i>Perlu perhatian</span>
+            </div>
         </a>
     </div>
 </div>
 
 <div class="row g-4">
     <div class="col-lg-8">
-        <div class="card">
+        <div class="card card-modern">
             <div class="card-header-custom">
                 <div class="card-header-title">
-                    <i class="fas fa-clock"></i>
+                    <span class="header-icon"><i class="fas fa-hourglass-half"></i></span>
                     Menunggu Persetujuan
                     @if($menungguPersetujuan->count() > 0)
                     <span class="badge bg-warning text-dark ms-2">{{ $menungguPersetujuan->count() }}</span>
@@ -62,8 +108,8 @@
             </div>
             <div class="card-body p-0">
                 @forelse($menungguPersetujuan as $pm)
-                <div class="d-flex align-items-center gap-3 p-3" style="border-bottom: 1px solid #f0f4f8;">
-                    <div class="avatar avatar-md avatar-primary flex-shrink-0">
+                <div class="d-flex align-items-center gap-3 p-3 list-item-hover">
+                    <div class="avatar avatar-md avatar-gradient flex-shrink-0">
                         {{ strtoupper(substr($pm->peminjam->nama_lengkap, 0, 1)) }}
                     </div>
                     <div class="flex-grow-1">
@@ -81,7 +127,7 @@
                 </div>
                 @empty
                 <div class="empty-state py-5">
-                    <div class="empty-state-icon"><i class="fas fa-check-circle"></i></div>
+                    <div class="empty-state-icon empty-success"><i class="fas fa-check-circle"></i></div>
                     <div class="empty-state-title">Semua permohonan sudah diproses</div>
                 </div>
                 @endforelse
@@ -90,17 +136,17 @@
     </div>
 
     <div class="col-lg-4">
-        <div class="card">
+        <div class="card card-modern card-danger-glow">
             <div class="card-header-custom">
                 <div class="card-header-title">
-                    <i class="fas fa-exclamation-triangle text-danger"></i>
+                    <span class="header-icon text-danger"><i class="fas fa-exclamation-triangle"></i></span>
                     Dokumen Terlambat
                 </div>
                 <a href="{{ route('laporan.terlambat') }}" class="btn btn-sm btn-outline-danger">Detail</a>
             </div>
             <div class="card-body p-0">
                 @forelse($terlambat as $pm)
-                <div class="p-3" style="border-bottom: 1px solid #f0f4f8;">
+                <div class="p-3 list-item-hover" style="border-bottom: 1px solid #f0f4f8;">
                     <div class="fw-semibold" style="font-size:13px">{{ $pm->peminjam->nama_lengkap }}</div>
                     <div class="d-flex justify-content-between align-items-center mt-1">
                         <span style="font-size:12px; color:var(--text-secondary)">{{ $pm->no_peminjaman }}</span>
@@ -111,7 +157,7 @@
                 </div>
                 @empty
                 <div class="empty-state py-5">
-                    <div class="empty-state-icon" style="background: linear-gradient(135deg, #e8f8f0 0%, #d4efdf 100%); color: #27ae60;"><i class="fas fa-smile"></i></div>
+                    <div class="empty-state-icon empty-success" style="background: linear-gradient(135deg, #e8f8f0 0%, #d4efdf 100%); color: #27ae60;"><i class="fas fa-smile"></i></div>
                     <div class="empty-state-title">Tidak ada yang terlambat</div>
                 </div>
                 @endforelse
@@ -122,22 +168,23 @@
 
 <div class="row g-4 mt-0">
     <div class="col-12">
-        <div class="card">
+        <div class="card card-modern">
             <div class="card-header-custom">
-                <div class="card-header-title"><i class="fas fa-history"></i> Aktivitas Terkini</div>
+                <div class="card-header-title"><span class="header-icon"><i class="fas fa-history"></i></span> Aktivitas Terkini</div>
             </div>
             <div class="card-body">
-                <div class="timeline">
+                <div class="timeline timeline-modern">
                     @foreach($aktivitasTerkini as $log)
                     <div class="timeline-item">
-                        <div class="timeline-icon {{ $log->aksi == 'create' ? 'bg-primary text-white' : ($log->aksi == 'approve' ? 'bg-success text-white' : 'bg-secondary text-white') }}">
+                        <div class="timeline-icon timeline-icon-{{ $log->aksi == 'create' ? 'create' : ($log->aksi == 'approve' ? 'approve' : 'update') }}">
                             <i class="fas {{ $log->aksi == 'create' ? 'fa-plus' : ($log->aksi == 'approve' ? 'fa-check' : 'fa-edit') }}"></i>
                         </div>
                         <div class="timeline-content">
                             <div class="fw-semibold" style="font-size:14px">{{ $log->keterangan }}</div>
                             <div class="timeline-date">
-                                <i class="fas fa-user me-1"></i>{{ $log->user->nama_lengkap ?? 'Sistem' }}
-                                · <i class="fas fa-clock me-1"></i>{{ $log->created_at->diffForHumans() }}
+                                <span class="timeline-user"><i class="fas fa-user me-1"></i>{{ $log->user->nama_lengkap ?? 'Sistem' }}</span>
+                                <span class="timeline-separator">·</span>
+                                <span class="timeline-time"><i class="fas fa-clock me-1"></i>{{ $log->created_at->diffForHumans() }}</span>
                             </div>
                         </div>
                     </div>
