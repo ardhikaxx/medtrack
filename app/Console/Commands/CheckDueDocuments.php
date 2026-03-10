@@ -53,6 +53,7 @@ class CheckDueDocuments extends Command
     protected function checkAlmostDueDocuments()
     {
         $threeDaysFromNow = now()->addDays(3)->toDateString();
+        $oneDayFromNow = now()->addDays(1)->toDateString();
         $today = now()->toDateString();
 
         $almostDuePeminjaman = Peminjaman::where('status_peminjaman', 'dipinjam')
@@ -70,11 +71,15 @@ class CheckDueDocuments extends Command
                 ->exists();
 
             if (!$existingNotification) {
+                $message = $daysLeft == 1 
+                    ? "Peminjaman {$pm->no_peminjaman} akan jatuh tempo besok ({$pm->tanggal_kembali_rencana->format('d/m/Y')}). Segera kembalikan."
+                    : "Peminjaman {$pm->no_peminjaman} akan jatuh tempo dalam {$daysLeft} hari ({$pm->tanggal_kembali_rencana->format('d/m/Y')}). Segera kembalikan.";
+                
                 Notification::createNotification(
                     $pm->peminjam_id,
                     'hampir_telat',
-                    'Pengingat: Dokumen Akan Jatuh Tempo',
-                    "Peminjaman {$pm->no_peminjaman} akan jatuh tempo dalam {$daysLeft} hari ({$pm->tanggal_kembali_rencana->format('d/m/Y')}). Segala kembalikan.",
+                    $daysLeft == 1 ? 'Pengingat: Dokumen Jatuh Tempo Besok!' : 'Pengingat: Dokumen Akan Jatuh Tempo',
+                    $message,
                     $pm
                 );
                 $this->info("Created almost due notification for {$pm->no_peminjaman}");

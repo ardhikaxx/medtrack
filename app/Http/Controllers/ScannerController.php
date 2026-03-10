@@ -17,8 +17,7 @@ class ScannerController extends Controller
     {
         $code = $request->get('code');
 
-        $peminjaman = Peminjaman::where('no_peminjaman', $code)
-            ->orWhere('qr_code', $code)
+        $peminjaman = Peminjaman::where('no_peminjaman', 'like', "%{$code}%")
             ->with(['peminjam', 'rekamMedis', 'detailPeminjamans'])
             ->first();
 
@@ -41,8 +40,9 @@ class ScannerController extends Controller
             ]);
         }
 
-        $rekamMedis = RekamMedis::where('no_rekam_medis', $code)
-            ->orWhere('qr_code', $code)
+        $rekamMedis = RekamMedis::where('no_rekam_medis', 'like', "%{$code}%")
+            ->orWhere('kode_dokumen', 'like', "%{$code}%")
+            ->orWhere('nama_pasien', 'like', "%{$code}%")
             ->first();
 
         if ($rekamMedis) {

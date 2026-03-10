@@ -115,8 +115,11 @@ $('#btn-lookup').on('click', function() {
 function lookupCode(code) {
     $('#result-content').html('<div class="text-center py-5"><i class="fas fa-spinner fa-spin fa-2x"></i><p class="mt-2">Mencari...</p></div>');
     
-    $.get('{{ route("scanner.lookup") }}', { code: code })
-        .done(function(response) {
+    $.ajax({
+        url: '{{ route("scanner.lookup") }}',
+        type: 'GET',
+        data: { code: code },
+        success: function(response) {
             if (response.type === 'peminjaman') {
                 renderPeminjaman(response.data);
             } else if (response.type === 'rekam_medis') {
@@ -129,15 +132,20 @@ function lookupCode(code) {
                     </div>
                 `);
             }
-        })
-        .fail(function() {
+        },
+        error: function(xhr, status, error) {
+            let msg = 'Terjadi kesalahan';
+            if (xhr.responseJSON && xhr.responseJSON.message) {
+                msg = xhr.responseJSON.message;
+            }
             $('#result-content').html(`
                 <div class="text-center text-danger py-5">
                     <i class="fas fa-times-circle fa-3x mb-3"></i>
-                    <p class="mb-0">Terjadi kesalahan</p>
+                    <p class="mb-0">${msg}</p>
                 </div>
             `);
-        });
+        }
+    });
 }
 
 function renderPeminjaman(data) {
