@@ -1,59 +1,301 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
+# MedTrack - Medical Record Borrowing & Return System
 
-<p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+## Sistem Informasi Peminjaman dan Pengembalian Rekam Medis
 
-## About Laravel
+**Klinik Pratama Rawat Inap Husada**
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+---
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+## 📋 Overview
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+MedTrack adalah sistem informasi berbasis web untuk mengelola peminjaman dan pengembalian dokumen rekam medis rawat jalan. Sistem ini dibangun sesuai SOP Peminjaman Dokumen Rekam Medis berdasarkan:
+- **Permenkes No. 11 Tahun 2017** tentang Keselamatan Pasien
+- **Permenkes No. 269 Tahun 2008** tentang Rekam Medis
 
-## Learning Laravel
+---
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework. You can also check out [Laravel Learn](https://laravel.com/learn), where you will be guided through building a modern Laravel application.
+## 🛠️ Teknologi
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains thousands of video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+| Komponen | Teknologi |
+|----------|-----------|
+| Framework | Laravel 12 |
+| Database | MySQL 8.x |
+| Frontend | Bootstrap 5.3, jQuery |
+| Icons | Font Awesome 6 |
+| Tables | DataTables 1.13+ |
+| Dropdown | Select2 4.1 |
+| Alerts | SweetAlert2 |
 
-## Laravel Sponsors
+---
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the [Laravel Partners program](https://partners.laravel.com).
+## 👥 Peran Pengguna (Roles)
 
-### Premium Partners
+| Role | Deskripsi |
+|------|-----------|
+| **Admin** | Administrator sistem dengan akses penuh ke semua fitur |
+| **Direktur** | Pimpinan yang dapat menyetujui peminjaman eksternal dan melihat laporan eksekutif |
+| **Kepala Rekam Medis** | Menyetujui peminjaman internal & eksternal, manajemen dokumen |
+| **Petugas Arsip** | Memproses peminjaman & pengembalian yang sudah disetujui |
+| **Tenaga Kesehatan Internal** | Membuat permohonan peminjaman internal |
+| **Tenaga Kesehatan Eksternal** | Membuat permohonan peminjaman eksternal (memerlukan surat) |
 
-- **[Vehikl](https://vehikl.com)**
-- **[Tighten Co.](https://tighten.co)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel)**
-- **[DevSquad](https://devsquad.com/hire-laravel-developers)**
-- **[Redberry](https://redberry.international/laravel-development)**
-- **[Active Logic](https://activelogic.com)**
+---
 
-## Contributing
+## 📦 Fitur Utama
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+### 1. Manajemen Pasien
+- Pendaftaran pasien baru
+- Data lengkap pasien (identitas, alamat, kontak, jaminan)
+- Riwayat peminjaman pasien
+- Pencarian dengan Select2
 
-## Code of Conduct
+### 2. Manajemen Rekam Medis
+- Pembuatan dokumen rekam medis
+- Pelacakan lokasi penyimpanan (ruang, rak, laci, map)
+- Status dokumen (tersedia, dipinjam, dalam proses, hilang, rusak, dimusnahkan)
+- Kode dokumen otomatis
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+### 3. Peminjaman Dokumen
+- Pembuatan permohonan peminjaman
+- Peminjaman internal dan eksternal
+- Persetujuan multi-level
+- Tracking status peminjaman
+- Notifikasi otomatis
+- Batas waktu pengembalian
 
-## Security Vulnerabilities
+### 4. Pengembalian Dokumen
+- Pencatatan pengembalian
+- Pemeriksaan kondisi dokumen
+- Denda untuk kerusakan/kehilangan
+- Laporan keterlambatan
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+### 5. Laporan & Statistik
+- Laporan peminjaman
+- Laporan pengembalian
+- Laporan keterlambatan
+- Statistik dokumen
+- Rekap bulanan
 
-## License
+### 6. Manajemen Pengguna
+- CRUD pengguna
+- Pengaturan role dan permissions
+- Aktivitas logging (audit trail)
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+### 7. Dashboard
+- Statistik peminjaman
+- Grafik aktivitas
+- Peminjaman menunggu persetujuan
+- Peminjaman terlambat
+- Aktivitas terkini
+
+---
+
+## 🔄 Alur Peminjaman
+
+```
+┌─────────────────────────────────────────────────────────────┐
+│                    PEMINJAMAN INTERNAL                      │
+├─────────────────────────────────────────────────────────────┤
+│ 1. Staff/Nakes Internal                                     │
+│    → Buat Permohonan Peminjaman                            │
+│    → Pilih dokumen rekam medis                             │
+│    → Tentukan tanggal kembali                              │
+│                              ↓ Status: Menunggu Persetujuan │
+│ 2. Kepala Rekam Medis                                       │
+│    → Review & Setuju / Tolak                               │
+│                              ↓ Status: Disetujui            │
+│ 3. Petugas Arsip                                           │
+│    → Cari dokumen di penyimpanan                           │
+│    → Serahkan dokumen ke peminjam                          │
+│                              ↓ Status: Dipinjam            │
+│ 4. Peminjam                                                │
+│    → Menggunakan dokumen                                   │
+│    → Kembalikan tepat waktu                                │
+│                              ↓ Status: Selesai             │
+└─────────────────────────────────────────────────────────────┘
+
+┌─────────────────────────────────────────────────────────────┐
+│                   PEMINJAMAN EKSTERNAL                      │
+├─────────────────────────────────────────────────────────────┤
+│ 1. Pihak Eksternal                                          │
+│    → Upload surat permohonan                               │
+│    → Pilih dokumen yang dibutuhkan                         │
+│                              ↓ Status: Menunggu Persetujuan │
+│ 2. Direktur → Disposisi ke Kepala Rekam Medis             │
+│                              ↓ Status: Menunggu Persetujuan │
+│ 3. Kepala Rekam Medis                                       │
+│    → Review & Setuju / Tolak                               │
+│                              ↓ Status: Disetujui            │
+│ 4. Petugas Arsip                                           │
+│    → Dokumen TIDAK dapat dibawa keluar                    │
+│    → Dibaca di tempat ( viewing only )                     │
+│                              ↓ Status: Dipinjam            │
+│ 5. Khusus Pengadilan                                         │
+│    → Ada izin tertulis dokter                              │
+│    → Boleh difotokopi                                      │
+│                              ↓ Status: Selesai             │
+└─────────────────────────────────────────────────────────────┘
+```
+
+---
+
+## 📊 Status Peminjaman
+
+| Status | Deskripsi |
+|--------|-----------|
+| `menunggu_persetujuan` | Menunggu persetujuan kepala rekam medis |
+| `disetujui` | Peminjaman disetujui, menunggu proses pengambilan |
+| `ditolak` | Peminjaman ditolak dengan alasan |
+| `dipinjam` | Dokumen sedang dipinjam |
+| `dikembalikan_sebagian` | Sebagian dokumen dikembalikan |
+| `selesai` | Semua dokumen dikembalikan dalam kondisi baik |
+| `terlambat` | Melewati tanggal rencana kembali |
+
+---
+
+## 📊 Status Dokumen Rekam Medis
+
+| Status | Deskripsi |
+|--------|-----------|
+| `tersedia` | Dokumen tersedia di tempat penyimpanan |
+| `dipinjam` | Dokumen sedang dipinjam |
+| `dalam_proses` | Sedang dalam proses peminjaman |
+| `hilang` | Dokumen hilang |
+| `rusak` | Dokumen rusak |
+| `dimusnahkan` | Dokumen sudah dimusnahkan (melewati retensi) |
+
+---
+
+## 📁 Struktur Folder
+
+```
+medtrack/
+├── app/
+│   ├── Http/
+│   │   ├── Controllers/
+│   │   │   ├── AuthController.php
+│   │   │   ├── DashboardController.php
+│   │   │   ├── PasienController.php
+│   │   │   ├── RekamMedisController.php
+│   │   │   ├── PeminjamanController.php
+│   │   │   ├── PengembalianController.php
+│   │   │   ├── PenggunaController.php
+│   │   │   ├── UnitController.php
+│   │   │   ├── LaporanController.php
+│   │   │   └── Api/WilayahController.php
+│   │   └── Middleware/
+│   ├── Models/
+│   │   ├── User.php
+│   │   ├── Pasien.php
+│   │   ├── RekamMedis.php
+│   │   ├── Peminjaman.php
+│   │   ├── Pengembalian.php
+│   │   └── ...
+├── database/
+│   ├── migrations/
+│   └── seeders/
+├── resources/
+│   ├── views/
+│   │   ├── layouts/
+│   │   ├── pasien/
+│   │   ├── rekam-medis/
+│   │   ├── peminjaman/
+│   │   ├── pengembalian/
+│   │   ├── laporan/
+│   │   ├── pengguna/
+│   │   ├── unit/
+│   │   └── vendor/pagination/
+│   └── css/
+│       └── medtrack.css
+├── routes/
+│   └── web.php
+└── public/
+    └── css/
+```
+
+---
+
+## 🚀 Cara Instalasi
+
+### 1. Clone Repository
+```bash
+git clone https://github.com/ardhikaxx/medtrack.git
+cd medtrack
+```
+
+### 2. Install Dependencies
+```bash
+composer install
+npm install
+```
+
+### 3. Setup Environment
+```bash
+cp .env.example .env
+```
+
+### 4. Konfigurasi Database
+Edit file `.env`:
+```
+DB_CONNECTION=mysql
+DB_HOST=127.0.0.1
+DB_PORT=3306
+DB_DATABASE=medtrack
+DB_USERNAME=root
+DB_PASSWORD=
+```
+
+### 5. Generate Key & Migrate
+```bash
+php artisan key:generate
+php artisan migrate
+php artisan db:seed
+```
+
+### 6. Build Assets
+```bash
+npm run build
+```
+
+### 7. Jalankan Server
+```bash
+php artisan serve
+```
+
+---
+
+## 🔐 Default Login
+
+| Email | Password | Role |
+|-------|----------|------|
+| admin@medtrack.com | password | Admin |
+| kepala@medtrack.com | password | Kepala Rekam Medis |
+| arsip@medtrack.com | password | Petugas Arsip |
+| dokter@medtrack.com | password | Nakes Internal |
+
+---
+
+## 📝 Fitur API
+
+Sistem menyediakan API untuk data wilayah Indonesia:
+
+| Endpoint | Deskripsi |
+|----------|-----------|
+| `GET /api/wilayah/provinces` | Daftar Provinsi |
+| `GET /api/wilayah/regencies/{id}` | Daftar Kota/Kabupaten |
+| `GET /api/wilayah/districts/{id}` | Daftar Kecamatan |
+| `GET /api/wilayah/villages/{id}` | Daftar Kelurahan |
+
+---
+
+## 📄 Lisensi
+
+Copyright © 2024 Klinik Pratama Rawat Inap Husada. All rights reserved.
+
+---
+
+## 👨‍💻 Developer
+
+**MedTrack** - Medical Record Borrowing & Return System for Klinik Pratama Rawat Inap Husada
+
+Built with Laravel 12 ❤️
