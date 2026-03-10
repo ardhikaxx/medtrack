@@ -34,11 +34,21 @@
                         </div>
                         <div class="col-md-6">
                             <label class="form-label">Password <span class="required">*</span></label>
-                            <input type="password" name="password" class="form-control" required>
+                            <div class="input-group">
+                                <input type="password" name="password" id="password" class="form-control" required>
+                                <button class="btn btn-outline-secondary" type="button" onclick="togglePassword('password', 'password-icon')">
+                                    <i class="fas fa-eye" id="password-icon"></i>
+                                </button>
+                            </div>
                         </div>
                         <div class="col-md-6">
                             <label class="form-label">Password Konfirmasi <span class="required">*</span></label>
-                            <input type="password" name="password_confirmation" class="form-control" required>
+                            <div class="input-group">
+                                <input type="password" name="password_confirmation" id="password_confirmation" class="form-control" required>
+                                <button class="btn btn-outline-secondary" type="button" onclick="togglePassword('password_confirmation', 'password-confirm-icon')">
+                                    <i class="fas fa-eye" id="password-confirm-icon"></i>
+                                </button>
+                            </div>
                         </div>
                         <div class="col-md-6">
                             <label class="form-label">Role <span class="required">*</span></label>

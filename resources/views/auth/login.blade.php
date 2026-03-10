@@ -215,8 +215,11 @@
                     <label class="form-label">Password</label>
                     <div class="input-group">
                         <span class="input-group-text"><i class="fas fa-lock"></i></span>
-                        <input type="password" name="password" class="form-control @error('password') is-invalid @enderror" 
+                        <input type="password" name="password" id="password" class="form-control @error('password') is-invalid @enderror" 
                                placeholder="Masukkan password" required>
+                        <button class="btn btn-outline-secondary" type="button" onclick="togglePassword('password', 'password-icon')">
+                            <i class="fas fa-eye" id="password-icon"></i>
+                        </button>
                     </div>
                     @error('password')
                     <div class="invalid-feedback d-block">{{ $message }}</div>

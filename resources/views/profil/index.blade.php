@@ -115,22 +115,28 @@
                         <div class="col-md-12">
                             <label class="form-label">Password Saat Ini <span class="required">*</span></label>
                             <div class="input-group">
-                                <input type="password" name="current_password" class="form-control" placeholder="Masukkan password saat ini" required>
-                                <span class="input-group-text"><i class="fas fa-lock"></i></span>
+                                <input type="password" name="current_password" id="current_password" class="form-control" placeholder="Masukkan password saat ini" required>
+                                <button class="btn btn-outline-secondary" type="button" onclick="togglePassword('current_password', 'current-password-icon')">
+                                    <i class="fas fa-eye" id="current-password-icon"></i>
+                                </button>
                             </div>
                         </div>
                         <div class="col-md-6">
                             <label class="form-label">Password Baru <span class="required">*</span></label>
                             <div class="input-group">
-                                <input type="password" name="password" class="form-control" placeholder="Masukkan password baru (min 8 karakter)" required>
-                                <span class="input-group-text"><i class="fas fa-key"></i></span>
+                                <input type="password" name="password" id="password_baru" class="form-control" placeholder="Masukkan password baru (min 8 karakter)" required>
+                                <button class="btn btn-outline-secondary" type="button" onclick="togglePassword('password_baru', 'password-icon')">
+                                    <i class="fas fa-eye" id="password-icon"></i>
+                                </button>
                             </div>
                         </div>
                         <div class="col-md-6">
                             <label class="form-label">Konfirmasi Password <span class="required">*</span></label>
                             <div class="input-group">
-                                <input type="password" name="password_confirmation" class="form-control" placeholder="Konfirmasi password baru" required>
-                                <span class="input-group-text"><i class="fas fa-key"></i></span>
+                                <input type="password" name="password_confirmation" id="password_confirmation" class="form-control" placeholder="Konfirmasi password baru" required>
+                                <button class="btn btn-outline-secondary" type="button" onclick="togglePassword('password_confirmation', 'password-confirm-icon')">
+                                    <i class="fas fa-eye" id="password-confirm-icon"></i>
+                                </button>
                             </div>
                         </div>
                     </div>
