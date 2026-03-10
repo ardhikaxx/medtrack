@@ -25,6 +25,7 @@
         <div id="calendar"></div>
     </div>
 </div>
+@endsection
 
 @push('styles')
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/fullcalendar@6.1.10/main.min.css">
