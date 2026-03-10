@@ -37,8 +37,8 @@ class SearchController extends Controller
         ];
 
         if ($type === 'all' || $type === 'pasien') {
-            $results['pasien'] = Pasien::where('nama', 'like', "%{$query}%")
-                ->orWhere('no_rm', 'like', "%{$query}%")
+            $results['pasien'] = Pasien::where('nama_lengkap', 'like', "%{$query}%")
+                ->orWhere('no_rekam_medis', 'like', "%{$query}%")
                 ->orWhere('nik', 'like', "%{$query}%")
                 ->limit(10)
                 ->get();
@@ -46,7 +46,7 @@ class SearchController extends Controller
 
         if ($type === 'all' || $type === 'rekam_medis') {
             $results['rekam_medis'] = RekamMedis::where('no_rekam_medis', 'like', "%{$query}%")
-                ->orWhere('nama_pasien', 'like', "%{$query}%")
+                ->orWhere('kode_dokumen', 'like', "%{$query}%")
                 ->limit(10)
                 ->get();
         }
@@ -60,8 +60,9 @@ class SearchController extends Controller
         }
 
         if ($type === 'all' || $type === 'pengguna') {
-            $results['pengguna'] = User::where('name', 'like', "%{$query}%")
+            $results['pengguna'] = User::where('nama_lengkap', 'like', "%{$query}%")
                 ->orWhere('email', 'like', "%{$query}%")
+                ->orWhere('username', 'like', "%{$query}%")
                 ->limit(10)
                 ->get();
         }

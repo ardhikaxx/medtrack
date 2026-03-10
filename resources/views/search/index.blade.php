@@ -89,8 +89,8 @@ $(document).ready(function() {
                                             <i class="fas fa-user"></i>
                                         </div>
                                         <div>
-                                            <div class="fw-semibold">${item.nama}</div>
-                                            <small class="text-muted">No. RM: ${item.no_rm}</small>
+                                            <div class="fw-semibold">${item.nama_lengkap}</div>
+                                            <small class="text-muted">No. RM: ${item.no_rekam_medis}</small>
                                         </div>
                                     </div>
                                     <i class="fas fa-chevron-right text-muted"></i>
@@ -112,7 +112,7 @@ $(document).ready(function() {
                                         </div>
                                         <div>
                                             <div class="fw-semibold">${item.no_rekam_medis}</div>
-                                            <small class="text-muted">${item.nama_pasien || '-'}</small>
+                                            <small class="text-muted">Kode: ${item.kode_dokumen || '-'}</small>
                                         </div>
                                     </div>
                                     <i class="fas fa-chevron-right text-muted"></i>
@@ -169,11 +169,15 @@ $(document).ready(function() {
                 
                 $('#search-results').html(html);
             })
-            .fail(function() {
+            .fail(function(xhr, status, error) {
+                let msg = 'Terjadi kesalahan saat mencari';
+                if (xhr.responseJSON && xhr.responseJSON.message) {
+                    msg = xhr.responseJSON.message;
+                }
                 $('#search-results').html(`
                     <div class="text-center text-danger py-5">
                         <i class="fas fa-exclamation-triangle fa-3x mb-3"></i>
-                        <p class="mb-0">Terjadi kesalahan saat mencari</p>
+                        <p class="mb-0">${msg}</p>
                     </div>
                 `);
             });
