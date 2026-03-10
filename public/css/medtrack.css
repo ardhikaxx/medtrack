@@ -1337,6 +1337,9 @@ body.medtrack-body {
     position: relative;
     overflow: hidden;
     border: 1px solid rgba(0,0,0,0.04);
+    min-height: 200px;
+    display: flex;
+    flex-direction: column;
 }
 
 .stat-card::before {
@@ -1352,19 +1355,19 @@ body.medtrack-body {
 }
 
 .stat-card-pasien::before {
-    background: linear-gradient(135deg, rgba(99, 102, 241, 0.08) 0%, rgba(139, 92, 246, 0.05) 100%);
+    background: linear-gradient(135deg, rgba(99, 102, 241, 0.06) 0%, rgba(139, 92, 246, 0.03) 100%);
 }
 
 .stat-card-dokumen::before {
-    background: linear-gradient(135deg, rgba(16, 185, 129, 0.08) 0%, rgba(5, 150, 105, 0.05) 100%);
+    background: linear-gradient(135deg, rgba(16, 185, 129, 0.06) 0%, rgba(5, 150, 105, 0.03) 100%);
 }
 
 .stat-card-peminjaman::before {
-    background: linear-gradient(135deg, rgba(139, 92, 246, 0.08) 0%, rgba(124, 58, 237, 0.05) 100%);
+    background: linear-gradient(135deg, rgba(139, 92, 246, 0.06) 0%, rgba(124, 58, 237, 0.03) 100%);
 }
 
 .stat-card-terlambat::before {
-    background: linear-gradient(135deg, rgba(239, 68, 68, 0.08) 0%, rgba(220, 38, 38, 0.05) 100%);
+    background: linear-gradient(135deg, rgba(239, 68, 68, 0.06) 0%, rgba(220, 38, 38, 0.03) 100%);
 }
 
 .stat-card::before {
@@ -1380,7 +1383,7 @@ body.medtrack-body {
     opacity: 1;
 }
 
-.stat-card-header {
+.stat-card-top {
     display: flex;
     align-items: flex-start;
     justify-content: space-between;
@@ -1389,14 +1392,18 @@ body.medtrack-body {
     z-index: 1;
 }
 
+.stat-card-icon-wrapper {
+    position: relative;
+}
+
 .stat-card-icon {
-    width: 60px;
-    height: 60px;
+    width: 56px;
+    height: 56px;
     border-radius: 16px;
     display: flex;
     align-items: center;
     justify-content: center;
-    font-size: 26px;
+    font-size: 24px;
     position: relative;
     transition: all 0.3s ease;
 }
@@ -1404,104 +1411,150 @@ body.medtrack-body {
 .stat-card-pasien .stat-card-icon {
     background: linear-gradient(135deg, #6366f1 0%, #8b5cf6 100%);
     color: #fff;
-    box-shadow: 0 8px 20px rgba(99, 102, 241, 0.3);
+    box-shadow: 0 8px 20px rgba(99, 102, 241, 0.35);
 }
 
 .stat-card-dokumen .stat-card-icon {
     background: linear-gradient(135deg, #10b981 0%, #059669 100%);
     color: #fff;
-    box-shadow: 0 8px 20px rgba(16, 185, 129, 0.3);
+    box-shadow: 0 8px 20px rgba(16, 185, 129, 0.35);
 }
 
 .stat-card-peminjaman .stat-card-icon {
     background: linear-gradient(135deg, #8b5cf6 0%, #7c3aed 100%);
     color: #fff;
-    box-shadow: 0 8px 20px rgba(139, 92, 246, 0.3);
+    box-shadow: 0 8px 20px rgba(139, 92, 246, 0.35);
 }
 
 .stat-card-terlambat .stat-card-icon {
     background: linear-gradient(135deg, #ef4444 0%, #dc2626 100%);
     color: #fff;
-    box-shadow: 0 8px 20px rgba(239, 68, 68, 0.3);
+    box-shadow: 0 8px 20px rgba(239, 68, 68, 0.35);
 }
 
 .stat-card:hover .stat-card-icon {
     transform: scale(1.1) rotate(3deg);
-    box-shadow: 0 12px 28px rgba(0,0,0,0.2);
+    box-shadow: 0 12px 28px rgba(0,0,0,0.25);
 }
 
 .stat-card-trend {
-    font-size: 12px;
+    font-size: 11px;
     font-weight: 600;
-    padding: 4px 10px;
+    padding: 5px 10px;
     border-radius: 20px;
     display: flex;
     align-items: center;
-    gap: 4px;
+    gap: 5px;
+    white-space: nowrap;
 }
 
 .stat-card-trend.up {
-    background: rgba(16, 185, 129, 0.1);
+    background: linear-gradient(135deg, #d1fae5 0%, #a7f3d0 100%);
     color: #059669;
 }
 
 .stat-card-trend.down {
-    background: rgba(239, 68, 68, 0.1);
+    background: linear-gradient(135deg, #fee2e2 0%, #fecaca 100%);
     color: #dc2626;
 }
 
 .stat-card-trend.neutral {
-    background: rgba(107, 114, 128, 0.1);
+    background: linear-gradient(135deg, #e5e7eb 0%, #d1d5db 100%);
     color: #6b7280;
 }
 
 .stat-card-trend.good {
-    background: rgba(16, 185, 129, 0.1);
+    background: linear-gradient(135deg, #d1fae5 0%, #a7f3d0 100%);
     color: #059669;
 }
 
+.stat-card-body {
+    position: relative;
+    z-index: 1;
+    margin-bottom: auto;
+}
+
 .stat-card-value {
-    font-size: 36px;
+    font-size: 38px;
     font-weight: 800;
     line-height: 1;
     margin-bottom: 8px;
-    position: relative;
-    z-index: 1;
     letter-spacing: -1px;
 }
 
-.stat-card-pasien .stat-card-value { color: #4f46e5; }
-.stat-card-dokumen .stat-card-value { color: #059669; }
-.stat-card-peminjaman .stat-card-value { color: #7c3aed; }
-.stat-card-terlambat .stat-card-value { color: #dc2626; }
+.stat-card-pasien .stat-card-value { 
+    color: #4f46e5; 
+    background: linear-gradient(135deg, #4f46e5, #7c3aed);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+.stat-card-dokumen .stat-card-value { 
+    color: #059669; 
+    background: linear-gradient(135deg, #059669, #10b981);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+.stat-card-peminjaman .stat-card-value { 
+    color: #7c3aed; 
+    background: linear-gradient(135deg, #7c3aed, #8b5cf6);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+.stat-card-terlambat .stat-card-value { 
+    color: #dc2626; 
+    background: linear-gradient(135deg, #dc2626, #ef4444);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
 
 .stat-card-label {
     font-size: 15px;
     font-weight: 600;
     color: #374151;
-    margin-bottom: 16px;
-    position: relative;
-    z-index: 1;
+    margin-bottom: 4px;
 }
 
-.stat-card-footer {
+.stat-card-meta {
     padding-top: 16px;
-    border-top: 1px solid rgba(0,0,0,0.06);
+    margin-top: auto;
     position: relative;
     z-index: 1;
 }
 
-.stat-card-footer span {
+.stat-card-meta span {
     font-size: 12px;
     color: #9ca3af;
     font-weight: 500;
     display: flex;
     align-items: center;
+    padding: 8px 12px;
+    background: rgba(0,0,0,0.03);
+    border-radius: 8px;
 }
 
-.stat-card-footer span i {
-    margin-right: 4px;
+.stat-card-meta span i {
+    color: #6b7280;
 }
+
+.stat-card-decoration {
+    position: absolute;
+    bottom: -30px;
+    right: -30px;
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    opacity: 0.1;
+    z-index: 0;
+}
+
+.stat-card-pasien .stat-card-decoration { background: #6366f1; }
+.stat-card-dokumen .stat-card-decoration { background: #10b981; }
+.stat-card-peminjaman .stat-card-decoration { background: #8b5cf6; }
+.stat-card-terlambat .stat-card-decoration { background: #ef4444; }
 
 /* ===== Stat Card Animations ===== */
 @keyframes slideInUp {
