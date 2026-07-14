@@ -340,3 +340,21 @@ Copyright © 2026 Klinik Pratama Rawat Inap Husada. All rights reserved.
 **MedTrack** - Medical Record Borrowing & Return System for Klinik Pratama Rawat Inap Husada
 
 Built with Laravel 12 ❤️
+
+
+## Donasi
+
+Jika project ini bermanfaat, Anda dapat mendukung pengembangan selanjutnya melalui donasi:
+
+<div align="center">
+
+![QRIS](public/assets/qris.png)
+
+**Scan QRIS di atas untuk berdonasi**
+
+Setiap donasi akan digunakan untuk:
+- Pengembangan fitur baru
+- Perbaikan bug & maintenance
+- Infrastruktur server
+
+</div>
