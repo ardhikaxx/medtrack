@@ -1,4 +1,4 @@
-# MedTrack - Medical Record Borrowing & Return System
+﻿# MedTrack - Medical Record Borrowing & Return System
 
 ## Sistem Informasi Peminjaman dan Pengembalian Rekam Medis
 
@@ -348,7 +348,7 @@ Jika project ini bermanfaat, Anda dapat mendukung pengembangan selanjutnya melal
 
 <div align="center">
 
-![QRIS](public/assets/qris.png)
+<img src="public/assets/qris.png" alt="QRIS" width="250" />
 
 **Scan QRIS di atas untuk berdonasi**
 
